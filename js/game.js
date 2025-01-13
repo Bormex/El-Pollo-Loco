@@ -61,8 +61,3 @@ window.addEventListener('keyup', (e) => {
         keyboard.SPACE = false;
     }
 })
-
-//setInterval(() => {
-//
-//    console.log(new Keyboard());
-//}, 1000)

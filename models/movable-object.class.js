@@ -27,6 +27,13 @@ class MovableObject {
         
     }
 
+    playAnimation(IMAGES_WALKING) {
+        let i = this.currentImage % this.IMAGES_WALKING.length;
+        let path = this.IMAGES_WALKING[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
     moveLeft() {
         setInterval(
             () => {
