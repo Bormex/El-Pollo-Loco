@@ -15,11 +15,22 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
 
     // Um diese kompl. Instants zuübergeben! => hauptsächlich gedacht für keyboard.
     setWorld() {
         this.character.world = this;
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if( this.character.isColliding(enemy)) {
+                    console.log('Collidiert mit:', enemy);
+                }
+            });
+        }, 1000);
     }
 
 
@@ -50,20 +61,32 @@ class World {
     addToMap(mo) {
         // spiegelt Pepe für links laufen
         if (mo.otherDirection) {
-            // um Pepe zu spiegeln
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1);
-            // um das canvas zu spiegeln
-            mo.x = mo.x * -1;
+            this.flipImage(mo);
         }
 
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height)
+        mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
+        
 
         if (mo.otherDirection) {
-            // um das canvas zu spiegeln
-            mo.x = mo.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(mo);
         }
     }
+
+    flipImage(mo) {
+        // um Pepe zu spiegeln
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0);
+        this.ctx.scale(-1, 1);
+        // um das canvas zu spiegeln
+        mo.x = mo.x * -1;
+    }
+
+    flipImageBack(mo) {
+        // um das canvas zu spiegeln
+        mo.x = mo.x * -1;
+        this.ctx.restore();
+    }
+
+
 }

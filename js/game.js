@@ -15,8 +15,6 @@ window.addEventListener('keydown', (e) => {
 
     if (e.keyCode == 87 || e.keyCode == 38) {
         keyboard.UP = true;
-        console.log(keyboard.UP);
-        
     }
 
     if (e.keyCode == 83 || e.keyCode == 40) {
