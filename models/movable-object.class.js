@@ -36,7 +36,11 @@ class MovableObject extends DrawableObject {
     };
 
     isAboveGround() {
-        return this.y < 125;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y < 125;
+        }
     };
     
     isColliding(mo) {

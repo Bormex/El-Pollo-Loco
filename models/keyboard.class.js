@@ -6,6 +6,7 @@ class Keyboard {
     LEFT = false;
     RIGHT = false;
     SPACE = false;
+    KEYD = false;
 
     
     constructor(parameters) {

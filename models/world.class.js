@@ -9,6 +9,7 @@ class World {
     canvas;
     ctx;
     camera_x = 0;
+    throwableobjects = [new ThrowableObject(100, 150)]
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -16,7 +17,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     // Um diese kompl. Instants zuübergeben! => hauptsächlich gedacht für keyboard.
@@ -24,30 +25,41 @@ class World {
         this.character.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if( this.character.isColliding(enemy)) {
-                    if (this.character.energy > 0) {
-                        this.character.hit();
-                    }
-                }
-            });
+            this.checkCollisions();
         }, 200);
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if(this.character.isColliding(enemy)) {
+                if (this.character.energy > 0) {
+                    this.character.hit();
+                    this.statusbar.setPercentage(this.character.energy);
+                }
+            }
+        });
     }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        this.ctx.translate(this.camera_x, 0);
+        this.ctx.translate(this.camera_x, 0); // DAMIT DIE KAMERA MIT VOR LÄUFT 
 
         this.addObjectsToMap(this.level.backgrounds);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableobjects);
         this.addToMap(this.character);
+        
+        // ------ TO FIX SIGN ON CHARACTER VIEW
+        this.ctx.translate(-this.camera_x, 0); // DAMIT DIE KAMERA MIT ZURÜCK LÄUFT 
         this.addToMap(this.statusbar);
-        this.ctx.translate(-this.camera_x, 0);
-
+        this.ctx.translate(this.camera_x, 0); // DAMIT DIE KAMERA MIT VOR LÄUFT 
+        // ------ TO FIX SIGN ON CHARACTER VIEW
+        
+        this.ctx.translate(-this.camera_x, 0); // DAMIT DIE KAMERA MIT ZURÜCK LÄUFT 
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
