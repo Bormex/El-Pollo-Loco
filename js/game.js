@@ -12,19 +12,19 @@ function init() {
 window.addEventListener('keydown', (e) => {
     //console.log(e);
 
-    if (e.keyCode == 87 || e.keyCode == 38) {
+    if (e.keyCode == 38) {//e.keyCode == 87 || W
         keyboard.UP = true;
     }
 
-    if (e.keyCode == 83 || e.keyCode == 40) {
+    if (e.keyCode == 40) {//e.keyCode == 83 || S
         keyboard.DOWN = true;
     }
 
-    if (e.keyCode == 65 || e.keyCode == 37) {
+    if (e.keyCode == 37) {//e.keyCode == 65 || A
         keyboard.LEFT = true;
     }
 
-    if (e.keyCode == 68 || e.keyCode == 39) {
+    if (e.keyCode == 39) {//e.keyCode == 68 || D
         keyboard.RIGHT = true;
     }
 

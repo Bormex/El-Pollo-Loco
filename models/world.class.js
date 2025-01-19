@@ -9,7 +9,7 @@ class World {
     canvas;
     ctx;
     camera_x = 0;
-    throwableobjects = [new ThrowableObject(100, 150)]
+    throwableobjects = []
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -25,10 +25,19 @@ class World {
         this.character.world = this;
     }
 
+    // läuft 24/7 durch
     run() {
         setInterval(() => {
             this.checkCollisions();
+            this.checkThrowObjects();
         }, 200);
+    }
+
+    checkThrowObjects() {
+        if (this.keyboard.KEYD) {
+            let bottle = new ThrowableObject(this.character.x + 75, this.character.y + 75);
+            this.throwableobjects.push(bottle);
+        }
     }
 
     checkCollisions() {
