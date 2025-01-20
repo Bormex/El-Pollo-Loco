@@ -30,8 +30,17 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            //this.moveIfHit();
         }, 200);
+
+        
     }
+
+    //moveIfHit() {
+    //    if () {
+    //        
+    //    }
+    //}
 
     checkThrowObjects() {
         if (this.keyboard.KEYD) {
@@ -44,6 +53,8 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy)) {
                 if (this.character.energy > 0) {
+                    //console.log(enemy);
+                    
                     this.character.hit();
                     this.statusbar.setPercentage(this.character.energy);
                 }

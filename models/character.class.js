@@ -3,7 +3,7 @@
 class Character extends MovableObject {
     height = 300;
     width = 150;
-    y = 5;
+    y = 135;
     speed = 10;
     offset= {
         top: 0,
@@ -15,7 +15,7 @@ class Character extends MovableObject {
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',
-        'img/2_character_pepe/4_hurt/H-43.png'
+        'img/2_character_pepe/4_hurt/H-43.png',
     ]
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',
@@ -74,7 +74,7 @@ class Character extends MovableObject {
     walking_sound = new Audio('audio/walking_on_rocks.mp3');
 
     constructor() {
-        super().loadImage('img/2_character_pepe/1_idle/long_idle/I-11.png');
+        super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
 
         this.loadImages(this.IMAGES_WALKING); // läd die Bilder in imageCache in Moveable-Objects OHNE WIRD KEIN BILD AUSGEBEN!
         this.loadImages(this.IMAGES_IDLE);
@@ -88,11 +88,11 @@ class Character extends MovableObject {
     animate() {
 
 
-        //setInterval(() => {
-        //    if (this.world.keyboard.RIGHT == false && this.world.keyboard.LEFT == false) {
-        //        this.playAnimation(this.IMAGES_IDLE)
-        //    }
-        //}, 10000)
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT == false && this.world.keyboard.LEFT == false) {
+                this.playAnimation(this.IMAGES_IDLE)
+            }
+        }, 3500)
 
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {

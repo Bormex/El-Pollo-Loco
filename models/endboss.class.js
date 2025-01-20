@@ -28,7 +28,8 @@ class Endboss extends MovableObject {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 2000;
+        this.x = 2900;
+        this.speed = this.speed + Math.random() * 1.25;
         this.animate();
     }
 
@@ -36,6 +37,12 @@ class Endboss extends MovableObject {
 
 
     animate() {
+
+        //if (moveIfHit()) {
+        //    setInterval(() => {
+        //        this.moveLeft()
+        //    }, 1000 / 60);
+        //}
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING)
