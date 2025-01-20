@@ -58,5 +58,10 @@ const Level1 = new Level(
         new Background('img/5_background/layers/1_first_layer/1.png', 719*4),
 
 
+    ],
+    [
+        new StatusBar(0, 0),
+        new StatusBar(100, 100),
+        new StatusBar(200, 200)
     ]
 )

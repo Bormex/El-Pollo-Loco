@@ -3,10 +3,12 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-    console.log('My Character is', world);
-    console.log('Gegner:', world.level.enemies)
+  canvas = document.getElementById('canvas');
+  world = new World(canvas, keyboard);
+  console.log('My Character is', world);
+  console.log('Gegner:', world.level.enemies)
+  console.log('Statusbars:', Level1.statusbar);
+  
 }
 
 // action on keydown

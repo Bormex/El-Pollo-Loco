@@ -75,7 +75,7 @@ class World {
         
         // ------ TO FIX SIGN ON CHARACTER VIEW
         this.ctx.translate(-this.camera_x, 0); // DAMIT DIE KAMERA MIT ZURÜCK LÄUFT 
-        this.addToMap(this.statusbar);
+        this.addObjectsToMap(this.level.statusbar);
         this.ctx.translate(this.camera_x, 0); // DAMIT DIE KAMERA MIT VOR LÄUFT 
         // ------ TO FIX SIGN ON CHARACTER VIEW
         
