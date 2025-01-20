@@ -61,7 +61,7 @@ const Level1 = new Level(
     ],
     [
         new StatusBar(0, 0),
-        new StatusBar(100, 100),
-        new StatusBar(200, 200)
+        new Coinbar(100, 100),
+        new Bottlebar(200, 200)
     ]
 )
