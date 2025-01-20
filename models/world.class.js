@@ -4,6 +4,8 @@ class World {
 
     character = new Character();
     statusbar = new StatusBar();
+    coinbar = new Coinbar();
+    bottlebar = new Bottlebar();
     level = Level1;
     keyboard;
     canvas;
@@ -75,7 +77,9 @@ class World {
         
         // ------ TO FIX SIGN ON CHARACTER VIEW
         this.ctx.translate(-this.camera_x, 0); // DAMIT DIE KAMERA MIT ZURÜCK LÄUFT 
-        this.addObjectsToMap(this.level.statusbar);
+        this.addToMap(this.statusbar);
+        this.addToMap(this.coinbar);
+        this.addToMap(this.bottlebar);
         this.ctx.translate(this.camera_x, 0); // DAMIT DIE KAMERA MIT VOR LÄUFT 
         // ------ TO FIX SIGN ON CHARACTER VIEW
         

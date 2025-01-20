@@ -1,8 +1,8 @@
 
 
 class Bottlebar extends DrawableObject {
-    //x = 0;
-    //y = 0;
+    x = 175;
+    y = 0;
     width = 175;
     height = 50;
 
@@ -16,12 +16,12 @@ class Bottlebar extends DrawableObject {
     ];
 
 
-    constructor(x, y) {
+    constructor() {
         super().loadImage('img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png');
         this.loadImages(this.IMAGES_BOTTLE);
         this.width;
         this.height;
-        this.x = x;
-        this.y = y;
+        this.x;
+        this.y;
     }
 }
