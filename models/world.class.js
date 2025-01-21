@@ -11,7 +11,8 @@ class World {
     canvas;
     ctx;
     camera_x = 0;
-    throwableobjects = []
+    throwableobjects = [new ThrowableObject()];
+
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
