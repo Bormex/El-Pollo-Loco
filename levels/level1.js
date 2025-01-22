@@ -58,7 +58,13 @@ const Level1 = new Level(
         new Background('img/5_background/layers/1_first_layer/1.png', 719*4),
     ],
     [
-        new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 300, 300),
-        new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 500, 300)
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle()
     ]
 )

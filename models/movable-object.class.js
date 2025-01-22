@@ -7,6 +7,8 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5; // Ist die Fallbeschleunigung
     energy = 100;
     lastHit = 0;
+    bottles = 0;
+
 
     
 
@@ -72,4 +74,10 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     };
+
+    collect() {
+        return this.bottles += 1;
+    }
+
+    
 }

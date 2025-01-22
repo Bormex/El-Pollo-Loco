@@ -54,7 +54,7 @@ window.addEventListener('keyup', (e) => {
         keyboard.LEFT = false;
     }
 
-    if (e.keyCode == 68 || e.keyCode == 39) { 
+    if (e.keyCode == 39) { 
         keyboard.RIGHT = false;
     }
 

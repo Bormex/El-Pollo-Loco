@@ -33,29 +33,29 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-            //this.moveIfHit();
         }, 200);
 
         
     }
 
-    //moveIfHit() {
-    //    if () {
-    //        
-    //    }
-    //}
+
 
     checkThrowObjects() {
-        if (this.keyboard.KEYD) {
+        if (this.keyboard.KEYD && this.character.bottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 75, this.character.y + 75);
             this.throwableobjects.push(bottle);
+            this.character.bottles--;
+            this.bottlebar.setPercentage(((this.bottlebar.percentage)-20));
         }
     }
 
     checkCollisions() {
-        this.level.bottle.forEach((bottle) => {
-            if(this.character.isColliding(bottle)) {
-                console.log(bottle);
+        this.level.bottle.forEach((bottle, i) => {
+            if(this.character.isColliding(bottle) && this.character.bottles < 5) {
+                console.log(bottle, i);
+                this.character.collect();
+                this.bottlebar.setPercentage((this.character.bottles * 20));
+                Level1.bottle.splice(i, 1);
             }
         })
 
@@ -63,8 +63,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy)) {
                 if (this.character.energy > 0) {
-                    console.log(enemy);
-                    
+                    //console.log(enemy);
                     this.character.hit();
                     this.statusbar.setPercentage(this.character.energy);
                 }

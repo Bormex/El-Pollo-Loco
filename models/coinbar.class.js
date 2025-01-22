@@ -5,8 +5,8 @@ class Coinbar extends DrawableObject {
     y = 40;
     width = 175;
     height = 50;
-
-    IMAGES_COIN = [
+    percentage = 0;
+    IMAGES = [
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/40.png',
@@ -15,12 +15,13 @@ class Coinbar extends DrawableObject {
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png'
     ];
 
-    constructor(x, y) {
-        super().loadImage('img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png');
-        this.loadImages(this.IMAGES_COIN);
+    constructor() {
+        super();
+        this.loadImages(this.IMAGES);
         this.width;
         this.height;
         this.x;
         this.y;
+        this.setPercentage(this.percentage);
     }
 }
