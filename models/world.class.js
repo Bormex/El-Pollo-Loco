@@ -53,10 +53,17 @@ class World {
     }
 
     checkCollisions() {
+        this.level.bottle.forEach((bottle) => {
+            if(this.character.isColliding(bottle)) {
+                console.log(bottle);
+            }
+        })
+
+
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy)) {
                 if (this.character.energy > 0) {
-                    //console.log(enemy);
+                    console.log(enemy);
                     
                     this.character.hit();
                     this.statusbar.setPercentage(this.character.energy);
@@ -73,6 +80,7 @@ class World {
         this.addObjectsToMap(this.level.backgrounds);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.throwableobjects);
         this.addToMap(this.character);
         
