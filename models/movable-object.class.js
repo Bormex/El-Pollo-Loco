@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     bottles = 0;
+    coin = 0;
 
 
     
@@ -75,8 +76,8 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     };
 
-    collect() {
-        return this.bottles += 1;
+    collect(item) {
+        return item += 1;
     }
 
     

@@ -53,12 +53,20 @@ class World {
         this.level.bottle.forEach((bottle, i) => {
             if(this.character.isColliding(bottle) && this.character.bottles < 5) {
                 console.log(bottle, i);
-                this.character.collect();
+                this.character.collect(this.character.bottles);
                 this.bottlebar.setPercentage((this.character.bottles * 20));
                 Level1.bottle.splice(i, 1);
             }
-        })
+        });
 
+        this.level.coin.forEach((coin, i) => {
+            if(this.character.isColliding(coin) && this.character.coin < 5) {
+                console.log(coin, i);
+                this.character.collect(this.character.coin);
+                this.coinbar.setPercentage((this.character.coin * 20));
+                Level1.coin.splice(i, 1);
+            }
+        });
 
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy)) {
@@ -69,6 +77,8 @@ class World {
                 }
             }
         });
+
+
     }
 
     draw() {
@@ -80,6 +90,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.bottle);
+        this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.throwableobjects);
         this.addToMap(this.character);
         
