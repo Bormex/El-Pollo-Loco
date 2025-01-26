@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Pollo Loco</title>
-
+    <link rel="shortcut icon" href="./img/3_enemies_chicken/chicken_normal/1_walk/2_w.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 
     <script src="models/drawable-object.class.js"></script>
@@ -33,13 +33,12 @@
 <body onload="init()">
     <h1>El Pollo Loco</h1>
     
-    <section>
-        <div>
-            <p>Fullscreen</p>
-            <p onclick="enterFullscreen()" style="cursor: pointer;">X</p>
+    <div class="overlay">
+        <div class="start-screen" class="start-screen">
+            <button onclick="startGame()">Start Game</button>
         </div>
-            <canvas id="canvas" width="720" height="480" style="border-radius: 10px;"></canvas>
-    </section>
+        <canvas id="canvas" width="720" height="480" style="border-radius: 10px;"></canvas>
+    </div>
    
     
 </body>

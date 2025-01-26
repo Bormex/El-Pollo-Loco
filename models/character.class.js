@@ -6,10 +6,10 @@ class Character extends MovableObject {
     y = 135;
     speed = 10;
     offset= {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
+        top: 110,
+        left: 25,
+        right: 25,
+        bottom: 0,
     };
     
     IMAGES_HURT = [
@@ -89,22 +89,22 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT == false && this.world.keyboard.LEFT == false) {
+            if (this.world.keyboard.RIGHT == false && this.world.keyboard.LEFT == false && this.world.keyboard.UP == false) {
                 this.playAnimation(this.IMAGES_IDLE)
             }
         }, 3500)
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {
                 // move right
                 this.moveRight();
                 this.otherDirection = false;
                 if(!this.isAboveGround()){  
-                        this.walking_sound.play();        
+                    this.walking_sound.play();        
                 }
             }
 
-            if (this.world.keyboard.LEFT && this.x > 0) {
+            if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
                 // move left
                 this.moveLeft();
                 this.otherDirection = true;
@@ -113,7 +113,7 @@ class Character extends MovableObject {
                 }
             }
             //                             position von pepe am boden (bzw. wenn er nicht am boden ist!!)
-            if (this.world.keyboard.UP && !this.isAboveGround()) {
+            if (this.world.keyboard.UP && !this.isAboveGround() && !this.isDead()) {
                 // Jumping
                 this.jump();
             }

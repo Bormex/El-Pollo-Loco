@@ -7,12 +7,15 @@ class World {
     coinbar = new Coinbar();
     bottlebar = new Bottlebar();
     level = Level1;
+    movableobject = new MovableObject();
     keyboard;
     canvas;
     ctx;
     camera_x = 0;
     throwableobjects = [new ThrowableObject()];
-
+    coin_collect = new Audio('audio/coin_collect.mp3');
+    bottle_collect = new Audio('audio/bottle_collect.mp3');
+    background_sound = new Audio('audio/small_chicken.mp3')
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -21,6 +24,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.background_sound.play();
     }
 
     // Um diese kompl. Instants zuübergeben! => hauptsächlich gedacht für keyboard.
@@ -41,7 +45,7 @@ class World {
 
 
     checkThrowObjects() {
-        if (this.keyboard.KEYD && this.character.bottles > 0) {
+        if (this.keyboard.KEYD && this.character.bottles > 0 && !this.movableobject.isDead()) {
             let bottle = new ThrowableObject(this.character.x + 75, this.character.y + 75);
             this.throwableobjects.push(bottle);
             this.character.bottles--;
@@ -52,10 +56,11 @@ class World {
     checkCollisions() {
         this.level.bottle.forEach((bottle, i) => {
             if(this.character.isColliding(bottle) && this.character.bottles < 5) {
-                console.log(bottle, i);
+                //console.log(bottle, i);
                 this.character.collectBottles();
                 this.bottlebar.setPercentage((this.character.bottles * 20));
                 Level1.bottle.splice(i, 1);
+                this.bottle_collect.play();
             }
         });
 
@@ -65,6 +70,7 @@ class World {
                 this.character.collectCoins();
                 this.coinbar.setPercentage((this.character.coin * 20));
                 Level1.coin.splice(i, 1);
+                this.coin_collect.play();
             }
         });
 

@@ -3,8 +3,6 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-  canvas = document.getElementById('canvas');
-  world = new World(canvas, keyboard);
   console.log('My Character is', world);
 }
 
@@ -94,5 +92,12 @@ function enterFullscreen() {
           document.msExitFullscreen();
         }
       }
+}
+
+function startGame() {
+  canvas = document.getElementById('canvas');
+  world = new World(canvas, keyboard);
+  canvas.style.display = 'flex';
+  document.getElementsByClassName('start-screen')[0].style.display = 'none';
 }
 
