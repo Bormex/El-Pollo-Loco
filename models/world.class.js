@@ -53,7 +53,7 @@ class World {
         this.level.bottle.forEach((bottle, i) => {
             if(this.character.isColliding(bottle) && this.character.bottles < 5) {
                 console.log(bottle, i);
-                this.character.collect(this.character.bottles);
+                this.character.collectBottles();
                 this.bottlebar.setPercentage((this.character.bottles * 20));
                 Level1.bottle.splice(i, 1);
             }
@@ -61,8 +61,8 @@ class World {
 
         this.level.coin.forEach((coin, i) => {
             if(this.character.isColliding(coin) && this.character.coin < 5) {
-                console.log(coin, i);
-                this.character.collect(this.character.coin);
+                //console.log(coin, i);
+                this.character.collectCoins();
                 this.coinbar.setPercentage((this.character.coin * 20));
                 Level1.coin.splice(i, 1);
             }
@@ -103,6 +103,7 @@ class World {
         // ------ TO FIX SIGN ON CHARACTER VIEW
         
         this.ctx.translate(-this.camera_x, 0); // DAMIT DIE KAMERA MIT ZURÜCK LÄUFT 
+        
         let self = this;
         requestAnimationFrame(function () {
             self.draw();

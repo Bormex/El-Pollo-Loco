@@ -76,9 +76,12 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     };
 
-    collect(item) {
-        return item += 1;
+    collectCoins() {
+        return this.coin += 1;
     }
 
+    collectBottles() {
+        return this.bottles += 1;
+    }
     
 }
