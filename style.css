@@ -5,12 +5,13 @@
 
 * {
     margin: 0;
+    text-decoration: none;
+    color: inherit;
 }
 
 body {
     font-family: Zabars;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100vh;
@@ -37,6 +38,7 @@ h1 {
     font-size: 64px;
     color: black;
     text-shadow: -4px 4px #9A3E00;
+    margin: 64px 0;
 }
 
 .overlay {
@@ -56,10 +58,113 @@ h1 {
     background-position-x: -75px;
     background-image: url(/img/9_intro_outro_screens/start/startscreen_1.png);
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.start-screen button {
+#startGame {
+    left: 50%;
+    cursor: pointer;
+    font-family: Zabars;
+    font-size: 24px;
+    color: #FFDA06;
     position: absolute;
     top: 64px;
+    width: 128px;
+    height: 64px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, red, #9A3E00);
+    animation: pulse 1.5s infinite;
+}
 
+
+@keyframes pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 24px;
+}
+
+span {
+    color: black;
+    cursor: pointer;
+    font-size: 52px;
+    text-shadow: -2px 2px #9A3E00;
+}
+
+span:hover {
+    text-shadow: -10px 10px #9A3E00;
+    scale: 1.05;
+}
+
+
+.imprint {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.imprint div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movement {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.movement div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arrows {
+    gap: 16px;
+    color: #9A3E00;
+    text-shadow: -1px 3px black;
+}
+
+p {
+    font-size: 30px;
+}
+
+
+.navigation {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navigation img {
+    width: 48px;
+    height: 48px;
+}
+
+.navigation div {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 6px;
 }

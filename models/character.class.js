@@ -6,10 +6,10 @@ class Character extends MovableObject {
     y = 135;
     speed = 10;
     offset= {
-        top: 110,
-        left: 25,
-        right: 25,
-        bottom: 0,
+        top: 95,
+        bottom: 10,
+        left: 20,
+        right: 20
     };
     
     IMAGES_HURT = [

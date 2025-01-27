@@ -5,12 +5,13 @@ class Chicken extends MovableObject {
     width = 85;
     y = 325;
     x = 800;
+    chickenIsDead = false;
     walking_sound = new Audio('audio/big_chicken.mp3');
-    offset= {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
+    offset = {
+        top: 15,
+        left: 10,
+        right: 10,
+        bottom: 10
     };
 
     IMAGES_WALKING = [
@@ -30,13 +31,22 @@ class Chicken extends MovableObject {
     animate() {
 
         setInterval(() => {
-            this.moveLeft()
-        }, 1000 / 60);
-
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 500);
+            if (!this.chickenIsDead) {
+              this.moveLeft();
+            }
+          }, 1000 / 60);
+      
+          setInterval(() => {
+            if (!this.chickenIsDead) {
+              this.playAnimation(this.IMAGES_WALKING);
+            }
+          }, 200);
     }
 
+    changeToDeadImage() {
+        this.loadImage("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
+        this.chickenIsDead = true;
+        this.y = 350;
+    }
 
 }

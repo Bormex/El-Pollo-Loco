@@ -6,10 +6,10 @@ class Coin extends DrawableObject {
     x = 500;
     percentage = 0;
     offset= {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
+        top: 55,
+        left: 55,
+        right: 55,
+        bottom: 55
     };
     IMAGES = [
         'img/8_coin/coin_1.png',

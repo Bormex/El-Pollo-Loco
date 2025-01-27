@@ -10,7 +10,12 @@ class MovableObject extends DrawableObject {
     bottles = 0;
     coin = 0;
 
-
+    offset= {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    };
     
 
     applyGravity() {
@@ -24,26 +29,12 @@ class MovableObject extends DrawableObject {
     };
 
     hit() {
-        let currentTime = new Date().getTime();
-    if (currentTime - this.lastHit < 2000) {
-      return;
-    }
-
-    //this.hurt_sound.play();
-    this.energy -= 5;
-
-    if (this.energy <= 0) {
-      this.energy = 0;
-      //this.dead_sound.play();
-
-      setTimeout(() => {
-        this.world.isGameOver = true;
-        this.world.clearGameObjects();
-        this.gameOverScreen();
-      }, 1000);
-    } else {
-      this.lastHit = currentTime;
-    }
+        this.energy -= 5;
+        if (this.energy <= 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
     };
 
     isHurt() {

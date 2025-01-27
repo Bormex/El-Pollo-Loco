@@ -2,8 +2,17 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
+function startGame() {
+  document.getElementsByClassName('start-screen')[0].style.display = 'none';
+  initLevel();
+  init();
   console.log('My Character is', world);
+}
+
+function init() {
+  canvas = document.getElementById('canvas');
+  world = new World(canvas, keyboard);
+  canvas.style.display = 'flex';
 }
 
 // action on keydown
@@ -94,10 +103,6 @@ function enterFullscreen() {
       }
 }
 
-function startGame() {
-  canvas = document.getElementById('canvas');
-  world = new World(canvas, keyboard);
-  canvas.style.display = 'flex';
-  document.getElementsByClassName('start-screen')[0].style.display = 'none';
-}
+
+
 

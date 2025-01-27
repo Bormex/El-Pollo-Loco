@@ -16,28 +16,58 @@
     <script src="models/statusbar.class.js"></script>
     <script src="models/coinbar.class.js"></script>
     <script src="models/bottlebar.class.js"></script>
-    <script src="models/enbossbar.class.js"></script>
+    <script src="models/endbossbar.class.js"></script>
     <script src="models/background.class.js"></script>
     <script src="models/cloud.class.js"></script>
     <script src="models/world.class.js"></script>
     <script src="models/chicken.class.js"></script>
+    <script src="models/chicken-small.class.js"></script>
     <script src="models/character.class.js"></script>
     <script src="models/endboss.class.js"></script>
-    <script src="models/collidable-object.class.js"></script>
 
     <script src="models/keyboard.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
 </head>
-<body onload="init()">
+<body>
     <h1>El Pollo Loco</h1>
     
     <div class="overlay">
         <div class="start-screen" class="start-screen">
-            <button onclick="startGame()">Start Game</button>
+            <button id="startGame" onclick="startGame()">Start Game</button>
         </div>
+
         <canvas id="canvas" width="720" height="480" style="border-radius: 10px;"></canvas>
+
+        <div class="navigation">
+            <div class="touch-arrows">
+                <img src="./assets/img/buttons/arrow-left.png">
+                <img src="./assets/img/buttons/arrow-right.png">
+            </div>
+            <div class="home-Btns">
+                <img src="./assets/img/buttons/home-btn.png">
+                <img src="./assets/img/buttons/mute.png">
+                <img src="./assets/img/buttons/unmute.png">
+            </div> 
+            <div class="touch-btns">
+                <img src="./assets/img/buttons/jump.png">
+                <img src="./assets/img/buttons/throw.png">
+            </div>
+        </div>
+
+        <footer>
+            <span>
+                <a href="movement.html">
+                    Movement
+                </a>
+            </span>
+            <span>
+                <a href="imprint.html">
+                    Imprint
+                </a>
+            </span>
+        </footer>
     </div>
    
     
