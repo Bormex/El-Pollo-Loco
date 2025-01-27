@@ -24,15 +24,32 @@ class MovableObject extends DrawableObject {
     };
 
     hit() {
-        this.energy -= 5;
-        if (this.energy <= 0) {
-            this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime();
-        }
+        let currentTime = new Date().getTime();
+    if (currentTime - this.lastHit < 2000) {
+      return;
+    }
+
+    //this.hurt_sound.play();
+    this.energy -= 5;
+
+    if (this.energy <= 0) {
+      this.energy = 0;
+      //this.dead_sound.play();
+
+      setTimeout(() => {
+        this.world.isGameOver = true;
+        this.world.clearGameObjects();
+        this.gameOverScreen();
+      }, 1000);
+    } else {
+      this.lastHit = currentTime;
+    }
     };
 
     isHurt() {
+        if (this.isAboveGround()) {
+            return false; // Unverwundbar, wenn über dem Boden
+        }
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 1;
