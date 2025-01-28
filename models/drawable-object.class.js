@@ -59,6 +59,13 @@ class DrawableObject {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
+        if(this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof SmallChicken) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.offset.top, this.offset.bottom, this.offset.left, this.offset.right);
+            ctx.stroke();
+        }
     };
    
 }

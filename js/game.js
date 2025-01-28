@@ -3,7 +3,7 @@ let world;
 let keyboard = new Keyboard();
 
 function startGame() {
-  document.getElementsByClassName('start-screen')[0].style.display = 'none';
+  document.getElementsByClassName('overlay-start')[0].style.display = 'none';
   initLevel();
   init();
   console.log('My Character is', world);
@@ -104,5 +104,24 @@ function enterFullscreen() {
 }
 
 
+function muteSound() {
+  world.sound = true;
+  //console.log(world.sound);
+}
 
+function unmuteSound() {
+  world.sound = false;
+  //console.log(world.sound);
+}
 
+function showAbout() {
+  if (document.getElementsByTagName('footer')[0].style.display == '' || document.getElementsByTagName('footer')[0].style.display == 'none') {
+    document.getElementsByTagName('footer')[0].style.display = 'flex';
+    document.getElementById('more-about-arrow').style.rotate = '180deg';
+    document.getElementById('more-about-arrow').style.filter = 'drop-shadow(0px -4px 6px black)';
+  } else {
+    document.getElementsByTagName('footer')[0].style.display = 'none';
+    document.getElementById('more-about-arrow').style.rotate = '0deg';
+    document.getElementById('more-about-arrow').style.filter = '';
+  }
+}

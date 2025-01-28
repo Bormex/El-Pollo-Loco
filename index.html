@@ -34,8 +34,8 @@
     <h1>El Pollo Loco</h1>
     
     <div class="overlay">
-        <div class="start-screen" class="start-screen">
-            <button id="startGame" onclick="startGame()">Start Game</button>
+        <div class="overlay-start">
+            <button id="startBtn" onclick="startGame()">Start Game</button>
         </div>
 
         <canvas id="canvas" width="720" height="480" style="border-radius: 10px;"></canvas>
@@ -46,9 +46,11 @@
                 <img src="./assets/img/buttons/arrow-right.png">
             </div>
             <div class="home-Btns">
-                <img src="./assets/img/buttons/home-btn.png">
-                <img src="./assets/img/buttons/mute.png">
-                <img src="./assets/img/buttons/unmute.png">
+                <a href="index.html">
+                    <img src="./assets/img/buttons/home-btn.png">
+                </a>
+                <img onclick="muteSound()" src="./assets/img/buttons/mute.png">
+                <img onclick="unmuteSound()" src="./assets/img/buttons/unmute.png">
             </div> 
             <div class="touch-btns">
                 <img src="./assets/img/buttons/jump.png">
@@ -56,20 +58,37 @@
             </div>
         </div>
 
-        <footer>
-            <span>
-                <a href="movement.html">
-                    Movement
-                </a>
-            </span>
-            <span>
-                <a href="imprint.html">
-                    Imprint
-                </a>
-            </span>
-        </footer>
+        <div class="more-about">
+            <p style="text-shadow: -2px 2px #9A3E00; letter-spacing: 8px; padding: 4px 0;">
+                More About
+            </p>
+            <footer>
+                <span>
+                    <a href="movement.html">
+                        Movement
+                    </a>
+                </span>
+                <span>
+                    <a href="imprint.html">
+                        Imprint
+                    </a>
+                </span>
+            </footer>
+            <img id="more-about-arrow" onclick="showAbout()" src="/assets/img/buttons/arrow-more-about.png">
+        </div>
     </div>
-   
+    <!--<footer>
+        <span>
+            <a href="movement.html">
+                Movement
+            </a>
+        </span>
+        <span>
+            <a href="imprint.html">
+                Imprint
+            </a>
+        </span>
+    </footer>-->
     
 </body>
 </html>

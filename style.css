@@ -7,6 +7,7 @@
     margin: 0;
     text-decoration: none;
     color: inherit;
+    letter-spacing: 2px;
 }
 
 body {
@@ -16,9 +17,9 @@ body {
     flex-direction: column;
     height: 100vh;
     width: 100%;
-    overflow: hidden;
+    /**overflow: hidden;**/
     background-image: url(./assets/img/desert-5385998_1920.png);
-    background-size: cover;
+    /**background-size: cover;**/
     background-position: top;
 }
 
@@ -38,7 +39,7 @@ h1 {
     font-size: 64px;
     color: black;
     text-shadow: -4px 4px #9A3E00;
-    margin: 64px 0;
+    margin: 48px 0;
 }
 
 .overlay {
@@ -48,7 +49,7 @@ h1 {
     max-width: 1920px;
 }
 
-.start-screen {
+.overlay-start {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,41 +62,46 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-#startGame {
-    left: 50%;
+#startBtn {
     cursor: pointer;
     font-family: Zabars;
     font-size: 24px;
-    color: #FFDA06;
+    color: #9A3E00;
     position: absolute;
-    top: 64px;
+    top: 40px;
     width: 128px;
     height: 64px;
     border-radius: 20px;
-    background-image: linear-gradient(to right, red, #9A3E00);
-    animation: pulse 1.5s infinite;
+    background: #FFDA06;
 }
 
-
-@keyframes pulse {
-    0% {
-      transform: translate(-50%, -50%) scale(1);
-    }
-  
-    50% {
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-  
-    100% {
-      transform: translate(-50%, -50%) scale(1);
-    }
+#startBtn:hover {
+    scale: 1.05;
 }
-
 
 footer {
-    display: flex;
+    display: none;
     justify-content: space-around;
-    padding-top: 24px;
+    padding: 24px 0;
+    width: 100%;
+}
+
+.more-about {
+    display: flex;
+    padding: 12px 0;
+    flex-direction: column;
+    align-items: center;
+}
+
+.more-about img {
+    width: 64px;
+    height: 24px;
+    cursor: pointer;
+    filter: drop-shadow(0px 4px 6px black);
+}
+
+.more-about img:hover {
+    scale: 1.05;
 }
 
 span {
@@ -109,7 +115,6 @@ span:hover {
     text-shadow: -10px 10px #9A3E00;
     scale: 1.05;
 }
-
 
 .imprint {
     max-width: 1440px;
@@ -130,7 +135,7 @@ span:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
 }
 
 .movement div {
@@ -156,6 +161,7 @@ p {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    z-index: 1;
 }
 
 .navigation img {

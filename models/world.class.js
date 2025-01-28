@@ -16,7 +16,8 @@ class World {
     throwableobjects = [];
     coin_collect = new Audio('audio/coin_collect.mp3');
     bottle_collect = new Audio('audio/bottle_collect.mp3');
-    background_sound = new Audio('audio/small_chicken.mp3')
+    background_sound = new Audio('audio/small_chicken.mp3');
+    sound = false;
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -25,7 +26,6 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.background_sound.play();
     }
 
     // Um diese kompl. Instants zuübergeben! => hauptsächlich gedacht für keyboard.
@@ -49,7 +49,7 @@ class World {
             this.checkThrowObjects();
             this.checkCoinCollisions();
             this.checkBottleCoinCollisions();
-
+            this.backgroundMusic();
 
 
 
@@ -66,9 +66,15 @@ class World {
 
 
 
+    
 
-
-
+    backgroundMusic() {
+        if (!this.sound) {            
+            this.background_sound.play();
+        } else {
+            this.background_sound.pause();
+        }
+    }
 
 
 
@@ -99,7 +105,9 @@ class World {
                 this.character.collectCoins();
                 this.coinbar.setPercentage((this.character.coin * 20));
                 Level1.coin.splice(i, 1);
-                this.coin_collect.play();
+                if (!this.sound) {
+                    this.coin_collect.play();
+                }
             }
         });
     }
@@ -121,7 +129,9 @@ class World {
                 this.character.collectBottles();
                 this.bottlebar.setPercentage((this.character.bottles * 20));
                 Level1.bottle.splice(i, 1);
-                this.bottle_collect.play();
+                if (!this.sound) {
+                    this.bottle_collect.play();
+                }
             }
         });
     }
@@ -219,11 +229,11 @@ class World {
         this.throwableObject.splice(bottleIndex, 1);
         if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
           enemy.changeToDeadImage();
-          this.small_chicken_dead.play();
+          //this.small_chicken_dead.play();
         }
         if (enemy instanceof Endboss) {
           enemy.playAnimation(enemy.IMAGES_HURT);
-          this.chicken_dead_sound.play();
+          //this.chicken_dead_sound.play();
         }
     }
 
