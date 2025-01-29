@@ -72,18 +72,33 @@ h1 {
 #startBtn {
     cursor: pointer;
     font-family: Zabars;
-    font-size: 24px;
-    color: #9A3E00;
+    font-size: 48px;
+    color: white;
     position: absolute;
-    top: 40px;
-    width: 128px;
-    height: 64px;
-    border-radius: 20px;
-    background: #FFDA06;
+    top: 32px;
+    border: none;
+    background: none;
+    text-shadow: 2px 2px #9A3E00;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.95);
+    }
 }
 
 #startBtn:hover {
     scale: 1.05;
+    text-shadow: 4px 4px #9A3E00;
 }
 
 section {

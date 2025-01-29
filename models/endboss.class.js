@@ -9,6 +9,12 @@ class Endboss extends MovableObject {
     x = 2900;
     endboss_dead = false;
     isHurt = false;
+    offset= {
+      top: 55,
+      left: 35,
+      right: 35,
+      bottom: 55
+    };
  
     IMAGES_ALERT = [
         "img/4_enemie_boss_chicken/2_alert/G5.png",

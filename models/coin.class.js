@@ -7,8 +7,8 @@ class Coin extends DrawableObject {
     percentage = 0;
     offset= {
         top: 55,
-        left: 55,
-        right: 55,
+        left: 35,
+        right: 35,
         bottom: 55
     };
     IMAGES = [

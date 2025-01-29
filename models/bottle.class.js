@@ -8,8 +8,8 @@ class Bottle extends DrawableObject {
     percentage = 0;
     offset= {
         top: 15,
-        left: 40,
-        right: 40,
+        left: 30,
+        right: 10,
         bottom: 15
     };
 
