@@ -103,17 +103,19 @@ function enterFullscreen() {
       }
 }
 
-
+// mute the sound
 function muteSound() {
   world.sound = true;
   //console.log(world.sound);
 }
 
+// unmute the sound
 function unmuteSound() {
   world.sound = false;
   //console.log(world.sound);
 }
 
+// Arrow to show more details about the side and movement of the game
 function showAbout() {
   if (document.getElementsByTagName('section')[0].style.display == '' || document.getElementsByTagName('section')[0].style.display == 'none') {
     document.getElementsByTagName('section')[0].style.display = 'flex';

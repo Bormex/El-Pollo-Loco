@@ -3,6 +3,11 @@
     src: url(./assets/fonts/Zabars.ttf);
 }
 
+html {
+    background: linear-gradient(#FF9247, #EA5F00);
+    overflow: hidden;
+}
+
 * {
     margin: 0;
     text-decoration: none;
@@ -21,6 +26,7 @@ body {
     background-image: url(./assets/img/desert-5385998_1920.png);
     /**background-size: cover;**/
     background-position: top;
+    overflow: scroll;
 }
 
 canvas {
@@ -36,10 +42,11 @@ canvas {
 }
 
 h1 {
-    font-size: 64px;
     color: black;
     text-shadow: -4px 4px #9A3E00;
-    margin: 48px 0;
+    letter-spacing: 6px;
+    font-size: 72px;
+    margin: 40px 0;
 }
 
 .overlay {
