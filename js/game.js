@@ -10,12 +10,6 @@ function startGame() {
   console.log('My Character is', world);
 }
 
-function init() {
-  canvas = document.getElementById('canvas');
-  world = new World(canvas, keyboard);
-  canvas.style.display = 'flex';
-}
-
 // action on keydown
 window.addEventListener('keydown', (e) => {
     //console.log(e);
@@ -74,10 +68,59 @@ window.addEventListener('keyup', (e) => {
     }
 })
 
+// the fullscreen function + swape the enter - & exit fullscreen icon
 function fullscreen() {
-  document.getElementById('canvas').requestFullscreen()
+  const overlay = document.getElementById('overlay');
+  if (!document.fullscreenElement && // Standard in modernen Browsern (Chrome, Firefox, Edge, Opera, Safari ab Version 71)
+    !document.webkitFullscreenElement && // Ältere WebKit-basierte Browser (Safari vor v71, ältere Versionen von Chrome & Opera)
+    !document.mozFullScreenElement && // Ältere Firefox-Versionen (vor 2015)
+    !document.msFullscreenElement // Internet Explorer und ältere Microsoft Edge-Versionen (vor Chromium)
+    ) {
+    enterFullscreenRequest();
+    fullscreenCanvas();
+    document.getElementById('exitFullscreen').style.display = 'block';
+    document.getElementById('fullscreen').style.display = 'none';
+  } else {
+    exitFullscreenRequest();
+    document.getElementById('fullscreen').style.display = 'block';
+    document.getElementById('exitFullscreen').style.display = 'none';
+  }
 }
 
+// condition to enter fullscreen on every browser
+function enterFullscreenRequest() {
+  if (overlay.requestFullscreen) {
+    overlay.requestFullscreen();
+  } else if (overlay.webkitRequestFullscreen) {
+    overlay.webkitRequestFullscreen();
+  } else if (overlay.mozRequestFullScreen) {
+    overlay.mozRequestFullScreen();
+  } else if (overlay.msRequestFullscreen) {
+    overlay.msRequestFullscreen();
+  }
+}
+
+// condition to exit fullscreen on every browser
+function exitFullscreenRequest() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+
+// condition for canvas fullscreen
+function fullscreenCanvas() {
+  const canvas = document.getElementById('canvas');
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+}
+
+// mute and unmute the whole gamesound
 function gameSound() {
     if (world.sound == false) {
       world.sound = true;
@@ -88,20 +131,6 @@ function gameSound() {
       document.getElementById('unMuteBtn').style.display = 'none';
       document.getElementById('muteBtn').style.display = 'block';
     }
-}
-
-// Arrow to show more details about the side and movement of the game
-function showAbout() {
-  if (document.getElementsByTagName('section')[0].style.display == '' || document.getElementsByTagName('section')[0].style.display == 'none') {
-    document.getElementsByTagName('section')[0].style.display = 'flex';
-    document.getElementById('more-about-arrow').style.rotate = '180deg';
-    document.getElementById('more-about-arrow').style.filter = 'drop-shadow(0px -4px 6px black)';
-    document.getElementsByTagName('section')[0].scrollIntoView({ behavior: 'smooth', flex: 'end' });
-  } else {
-    document.getElementsByTagName('section')[0].style.display = 'none';
-    document.getElementById('more-about-arrow').style.rotate = '0deg';
-    document.getElementById('more-about-arrow').style.filter = '';
-  }
 }
 
 // For Touch Devices (Touchscreen)

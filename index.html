@@ -29,11 +29,12 @@
     <script src="models/level.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/script.js"></script>
 </head>
-<body>
+<body id="body">
     <h1>El Pollo Loco</h1>
     
-    <div class="overlay">
+    <div id="overlay" class="overlay">
         <div class="overlay-start">
             <button id="startBtn" onclick="startGame()">Start Game</button>
         </div>
@@ -51,8 +52,8 @@
                 </a>
                 <img id="muteBtn" onclick="gameSound()" src="./assets/img/buttons/mute-btn.png">
                 <img id="unMuteBtn" onclick="gameSound()" src="./assets/img/buttons/unmute-btn.png" style="display: none;">
-                <img onclick="fullscreen()" src="./assets/img/buttons/fullscreen-btn.png">
-                <img onclick="fullscreen()" src="./assets/img/buttons/exit-fullscreen-btn.png">
+                <img id="fullscreen" onclick="fullscreen()" src="./assets/img/buttons/fullscreen-btn.png">
+                <img id="exitFullscreen" onclick="fullscreen()" src="./assets/img/buttons/exit-fullscreen-btn.png" style="display: none;">
             </div> 
             <div class="touch-btns">
                 <img class="touch-btn" id="touchUp" src="./assets/img/buttons/arrow-jump.png">
