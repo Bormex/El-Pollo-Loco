@@ -180,19 +180,23 @@ p {
 .navigation {
     position: absolute;
     bottom: 0;
-    display: flex;
+    display: none;
     justify-content: space-between;
     width: 100%;
+    max-width: 100%;
     z-index: 1;
+    padding: 0 24px;
+    width: -webkit-fill-available;
+    padding-bottom: 6px;
 }
 
 .navigation img {
     width: 48px;
     height: 48px;
+    cursor: pointer;
 }
 
 .navigation div {
     display: flex;
     gap: 16px;
-    padding-bottom: 6px;
 }

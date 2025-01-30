@@ -6,6 +6,7 @@ function startGame() {
   document.getElementsByClassName('overlay-start')[0].style.display = 'none';
   initLevel();
   init();
+  document.getElementsByClassName('navigation')[0].style.display = 'flex';
   console.log('My Character is', world);
 }
 
@@ -45,19 +46,18 @@ window.addEventListener('keydown', (e) => {
 })
 
 // do nothing on key up
-window.addEventListener('keyup', (e) => {
+window.addEventListener('keyup', (e) => { 
     //console.log(e);
 
-    if (e.keyCode == 87 || e.keyCode == 38) {
+    if (e.keyCode == 38) {
         keyboard.UP = false;
-        
     }
 
-    if (e.keyCode == 83 || e.keyCode == 40) {
+    if (e.keyCode == 40) {
         keyboard.DOWN = false;
     }
 
-    if (e.keyCode == 65 || e.keyCode == 37) {
+    if (e.keyCode == 37) {
         keyboard.LEFT = false;
     }
 
@@ -74,45 +74,20 @@ window.addEventListener('keyup', (e) => {
     }
 })
 
-function enterFullscreen() {
-    if (
-        !document.fullscreenElement &&
-        !document.webkitFullscreenElement &&
-        !document.mozFullScreenElement &&
-        !document.msFullscreenElement
-      ) {
-        if (document.documentElement.requestFullscreen) {
-          document.documentElement.requestFullscreen();
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen();
-        } else if (document.documentElement.mozRequestFullScreen) {
-          document.documentElement.mozRequestFullScreen();
-        } else if (document.documentElement.msRequestFullscreen) {
-          document.documentElement.msRequestFullscreen();
-        }
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        }
-      }
+function fullscreen() {
+  document.getElementById('canvas').requestFullscreen()
 }
 
-// mute the sound
-function muteSound() {
-  world.sound = true;
-  //console.log(world.sound);
-}
-
-// unmute the sound
-function unmuteSound() {
-  world.sound = false;
-  //console.log(world.sound);
+function gameSound() {
+    if (world.sound == false) {
+      world.sound = true;
+      document.getElementById('unMuteBtn').style.display = 'block';
+      document.getElementById('muteBtn').style.display = 'none';
+    } else {
+      world.sound = false;
+      document.getElementById('unMuteBtn').style.display = 'none';
+      document.getElementById('muteBtn').style.display = 'block';
+    }
 }
 
 // Arrow to show more details about the side and movement of the game
@@ -128,3 +103,54 @@ function showAbout() {
     document.getElementById('more-about-arrow').style.filter = '';
   }
 }
+
+// For Touch Devices (Touchscreen)
+window.addEventListener('touchstart', () => {
+  document.querySelectorAll('.touch-btn').forEach(button => {
+    button.addEventListener('touchstart', () => {
+      //console.log(button.id + " gedrückt");
+      if (button.id == 'touchLeft') {
+        keyboard.LEFT = true;
+        button.style.scale = '0.9';
+      }
+
+      if (button.id == 'touchRight') {
+        keyboard.RIGHT = true;
+        button.style.scale = '0.9';
+      }
+
+      if (button.id == 'touchUp') {
+        keyboard.UP = true;
+        button.style.scale = '0.9';
+      }
+
+      if (button.id == 'touchThrow') {
+        keyboard.KEYD = true;
+        button.style.scale = '0.9';
+      }
+    });
+
+    button.addEventListener('touchend', () => {
+      //console.log(button.id + " losgelassen");
+      if (button.id == 'touchLeft') {
+        keyboard.LEFT = false;
+        button.style.scale = 'unset';
+      }
+
+      if (button.id == 'touchRight') {
+        keyboard.RIGHT = false;
+        button.style.scale = 'unset';
+      }
+
+      if (button.id == 'touchUp') {
+        keyboard.UP = false;
+        button.style.scale = 'unset';
+      }
+
+      if (button.id == 'touchThrow') {
+        keyboard.KEYD = false;
+        button.style.scale = 'unset';
+      }
+    });
+  });
+});

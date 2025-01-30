@@ -42,19 +42,21 @@
 
         <div class="navigation">
             <div class="touch-arrows">
-                <img src="./assets/img/buttons/arrow-left.png">
-                <img src="./assets/img/buttons/arrow-right.png">
+                <img class="touch-btn" id="touchLeft" src="./assets/img/buttons/arrow-left-btn.png">
+                <img class="touch-btn" id="touchRight" src="./assets/img/buttons/arrow-right-btn.png">
             </div>
             <div class="home-Btns">
                 <a href="index.html">
                     <img src="./assets/img/buttons/home-btn.png">
                 </a>
-                <img onclick="muteSound()" src="./assets/img/buttons/mute.png">
-                <img onclick="unmuteSound()" src="./assets/img/buttons/unmute.png">
+                <img id="muteBtn" onclick="gameSound()" src="./assets/img/buttons/mute-btn.png">
+                <img id="unMuteBtn" onclick="gameSound()" src="./assets/img/buttons/unmute-btn.png" style="display: none;">
+                <img onclick="fullscreen()" src="./assets/img/buttons/fullscreen-btn.png">
+                <img onclick="fullscreen()" src="./assets/img/buttons/exit-fullscreen-btn.png">
             </div> 
             <div class="touch-btns">
-                <img src="./assets/img/buttons/jump.png">
-                <img src="./assets/img/buttons/throw.png">
+                <img class="touch-btn" id="touchUp" src="./assets/img/buttons/arrow-jump.png">
+                <img class="touch-btn" id="touchThrow" src="./assets/img/buttons/throw-bottle-btn.png">
             </div>
         </div>
 
