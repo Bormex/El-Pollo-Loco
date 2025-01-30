@@ -29,10 +29,13 @@ window.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth <= 768) {
         document.getElementsByTagName('h1')[0].style.display = 'none';
         document.getElementById('overlay').style.display = 'none';
-        document.getElementsByTagName('body')[0] += rotateDeviceTEMPLATE();
+        if (document.getElementsByClassName('rotateDeviceDiv')[0] == undefined) {            
+            document.getElementsByTagName('body')[0].innerHTML += rotateDeviceTEMPLATE();
+        }
     } else {
         document.getElementsByTagName('h1')[0].style.display = 'unset';
         document.getElementById('overlay').style.display = 'unset';
+        document.getElementsByClassName('rotateDeviceDiv')[0].remove();
     }   
 })
 
@@ -45,15 +48,23 @@ window.addEventListener('resize', () => {
     if (window.innerWidth <= 768) {
         document.getElementsByTagName('h1')[0].style.display = 'none';
         document.getElementById('overlay').style.display = 'none';
-        document.getElementsByTagName('body')[0] += rotateDeviceTEMPLATE();
+        if (document.getElementsByClassName('rotateDeviceDiv')[0] == undefined) {            
+            document.getElementsByTagName('body')[0].innerHTML += rotateDeviceTEMPLATE();
+        }
     } else {
         document.getElementsByTagName('h1')[0].style.display = 'unset';
         document.getElementById('overlay').style.display = 'unset';
+        document.getElementsByClassName('rotateDeviceDiv')[0].remove();
     }   
 })
 
 function rotateDeviceTEMPLATE() {
     return `
-    <img id="rotateDevice" src="assets/img/rotate-device.png" alt="">
+    <div class="rotateDeviceDiv">
+        <img id="rotateDevice" src="assets/img/rotate-device.png" alt="">
+        <p style="text-align: center;">
+            Please rotate your device horizontally.
+        </p>
+    </div>
     `
 }

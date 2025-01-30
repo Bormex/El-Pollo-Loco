@@ -200,3 +200,34 @@ p {
     display: flex;
     gap: 16px;
 }
+
+
+.rotateDeviceDiv {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin: auto; 
+    gap: 48px;
+}
+
+
+#rotateDevice {
+    width: 320px;
+    height: 320px;
+    margin: auto;
+    animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+    0% {
+        rotate: -90deg;
+    }
+
+    70% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: -90deg;
+    }
+}
