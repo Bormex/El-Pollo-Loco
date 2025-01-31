@@ -54,6 +54,8 @@ h1 {
     height: 480px;
     width: 720px;
     max-width: 1920px;
+    min-width: 720px;
+    min-height: 480px;
 }
 
 .overlay-start {
