@@ -11,7 +11,7 @@ class SmallChicken extends MovableObject {
     left: 10,
     right: 10,
     bottom: 55
-};
+  };
 
   IMAGES_WALKING = [
     "img/3_enemies_chicken/chicken_small/1_walk/1_w.png",
