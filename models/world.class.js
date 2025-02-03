@@ -4,6 +4,7 @@ class World {
 
     character = new Character();
     statusbar = new StatusBar();
+    endboss = new Endboss();
     coinbar = new Coinbar();
     bottlebar = new Bottlebar();
     endbossstatusBar = new Endbossbar();
@@ -17,6 +18,7 @@ class World {
     coin_collect = new Audio('audio/coin_collect.mp3');
     bottle_collect = new Audio('audio/bottle_collect.mp3');
     background_sound = new Audio('audio/game_sound.mp3');
+    bottle_drop = new Audio('audio/broken_bottle.mp3') 
     sound = false;
 
     constructor(canvas, keyboard){
@@ -45,7 +47,7 @@ class World {
             this.checkCoinCollisions();
             this.checkBottleCollisions();
             this.backgroundMusic();
-
+            this.startNewGame();
 
 
         }, 200);
@@ -55,7 +57,14 @@ class World {
     }
 
 
-
+    startNewGame() {
+        if (this.character.energy == 0 || this.endboss.energy == 0) {
+            console.log('nosafhsdg');
+            
+        } else {
+            
+        }
+    }
 
     
 
@@ -70,8 +79,21 @@ class World {
 
 
 
+    
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if(enemy.chickenIsDead) return; // damit totes huhn kein dmg gibt
+
+            if(this.character.isColliding(enemy)) {
+                this.checkCharacterEnemyCollision(enemy);
+            }
+        });
+        this.checkThrowableCollisions();
+    }
 
 
+
+    // wirf flaschen
     checkThrowObjects() {
         if (this.keyboard.KEYD && this.character.bottles > 0 && !this.movableobject.isDead()) {
             let bottle = new ThrowableObject(this.character.x + 75, this.character.y + 75);
@@ -118,21 +140,7 @@ class World {
     }
 
 
-
-    checkCollisions() {
-
-        this.level.enemies.forEach((enemy) => {
-            if(enemy.chickenIsDead) return;
-
-            if(this.character.isColliding(enemy)) {
-                this.handleCharacterEnemyCollision(enemy);
-            }
-        });
-        this.checkThrowableCollisions();
-    }
-
-
-
+    
     checkThrowableCollisions() {
         this.throwableobjects.forEach((bottle, bottleIndex) => {
           this.level.enemies.forEach((enemy) => {
@@ -143,7 +151,7 @@ class World {
                // this.bottle_sound.play();
                 this.endbossstatusBar.setPercentage(enemy.energy);
               } else {
-                this.handleBottleEnemyCollision(bottleIndex, enemy);
+                this.checkBottleEnemyCollision(bottleIndex, enemy);
               }
             }
           });
@@ -154,7 +162,7 @@ class World {
 
 
 
-    handleCharacterEnemyCollision(enemy) {
+    checkCharacterEnemyCollision(enemy) {
         if (enemy instanceof Endboss) {
           this.character.hit();
           this.statusbar.setPercentage(this.character.energy);
@@ -178,9 +186,9 @@ class World {
 
 
 
-    handleBottleEnemyCollision(bottleIndex, enemy) {
-       //this.bottle_sound.play();
-        this.throwableObjects.splice(bottleIndex, 1);
+    checkBottleEnemyCollision(bottleIndex, enemy) {
+        this.bottle_drop.play();
+        this.throwableobjects.splice(bottleIndex, 1);
         if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
           enemy.changeToDeadImage();
           //this.small_chicken_dead.play();

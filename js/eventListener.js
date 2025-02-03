@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     } else {
         document.getElementsByTagName('h1')[0].style.display = 'unset';
         document.getElementById('overlay').style.display = 'unset';
-        document.getElementsByClassName('rotateDeviceDiv')[0].remove();
+        document.getElementsByClassName('rotateDeviceDiv')[0]?.remove();
     }   
 })
 
@@ -38,7 +38,7 @@ window.addEventListener('resize', () => {
     } else {
         document.getElementsByTagName('h1')[0].style.display = 'unset';
         document.getElementById('overlay').style.display = 'unset';
-        document.getElementsByClassName('rotateDeviceDiv')[0].remove();
+        document.getElementsByClassName('rotateDeviceDiv')[0]?.remove();
     }   
 })
 
