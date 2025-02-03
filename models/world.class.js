@@ -16,7 +16,7 @@ class World {
     throwableobjects = [];
     coin_collect = new Audio('audio/coin_collect.mp3');
     bottle_collect = new Audio('audio/bottle_collect.mp3');
-    background_sound = new Audio('audio/small_chicken.mp3');
+    background_sound = new Audio('audio/game_sound.mp3');
     sound = false;
 
     constructor(canvas, keyboard){
@@ -39,25 +39,16 @@ class World {
 
 
 
-
-
-
-
-
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCoinCollisions();
-            this.checkBottleCoinCollisions();
+            this.checkBottleCollisions();
             this.backgroundMusic();
 
 
 
         }, 200);
-
-
-
-
 
 
         
@@ -93,11 +84,6 @@ class World {
 
 
 
-
-
-
-
-
     checkCoinCollisions() {
         this.level.coin.forEach((coin, i) => {
             if(this.character.isColliding(coin) && this.character.coin < 5) {
@@ -117,15 +103,10 @@ class World {
 
 
 
-
-
-
-
-
-    checkBottleCoinCollisions() {
+    checkBottleCollisions() {
         this.level.bottle.forEach((bottle, i) => {
             if(this.character.isColliding(bottle) && this.character.bottles < 5) {
-                //console.log(bottle, i);
+                console.log(bottle, i);
                 this.character.collectBottles();
                 this.bottlebar.setPercentage((this.character.bottles * 20));
                 Level1.bottle.splice(i, 1);
@@ -135,13 +116,6 @@ class World {
             }
         });
     }
-
-
-
-
-
-
-
 
 
 
@@ -174,13 +148,7 @@ class World {
             }
           });
         });
-      }
-
-
-
-
-
-
+    }
 
 
 
@@ -210,23 +178,9 @@ class World {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     handleBottleEnemyCollision(bottleIndex, enemy) {
        //this.bottle_sound.play();
-        this.throwableObject.splice(bottleIndex, 1);
+        this.throwableObjects.splice(bottleIndex, 1);
         if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
           enemy.changeToDeadImage();
           //this.small_chicken_dead.play();
@@ -236,18 +190,6 @@ class World {
           //this.chicken_dead_sound.play();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -290,22 +232,11 @@ class World {
 
 
 
-
-
-
-
-
     addObjectsToMap(objects) {
         objects.forEach(obj => {
             this.addToMap(obj);
         })
     }
-
-
-
-
-
-
 
 
 
@@ -329,13 +260,6 @@ class World {
 
 
 
-
-
-
-
-
-
-
     flipImage(mo) {
         // um Pepe zu spiegeln
         this.ctx.save();
@@ -344,9 +268,6 @@ class World {
         // um das canvas zu spiegeln
         mo.x = mo.x * -1;
     }
-
-
-
 
 
 
