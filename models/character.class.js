@@ -11,7 +11,6 @@ class Character extends MovableObject {
         left: 20,
         right: 20
     };
-    
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',

@@ -47,7 +47,6 @@ class World {
             this.checkCoinCollisions();
             this.checkBottleCollisions();
             this.backgroundMusic();
-            this.startNewGame();
 
 
         }, 200);
@@ -57,17 +56,7 @@ class World {
     }
 
 
-    startNewGame() {
-        if (this.character.energy == 0 || this.endboss.energy == 0) {
-            console.log('nosafhsdg');
-            
-        } else {
-            
-        }
-    }
-
     
-
     backgroundMusic() {
         if (!this.sound) {            
             this.background_sound.play();
@@ -148,7 +137,7 @@ class World {
               if (enemy instanceof Endboss) {
                 enemy.hit();
                 this.throwableobjects.splice(bottleIndex, 1);
-               // this.bottle_sound.play();
+                //this.bottle_sound.play();
                 this.endbossstatusBar.setPercentage(enemy.energy);
               } else {
                 this.checkBottleEnemyCollision(bottleIndex, enemy);
