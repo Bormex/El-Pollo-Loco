@@ -76,3 +76,11 @@ function gameSound() {
 }
 
 
+function restartGame() {
+  document.getElementsByClassName('overlay-win')[0].style.display = 'none';
+  document.getElementsByClassName('overlay-start')[0].style.display = 'none';
+  initLevel();
+  init();
+  document.getElementsByClassName('navigation')[0].style.display = 'flex';
+}
+

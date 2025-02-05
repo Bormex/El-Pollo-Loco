@@ -21,6 +21,7 @@ class World {
     bottle_drop = new Audio('audio/broken_bottle.mp3') 
     sound = false;
 
+    
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -222,6 +223,7 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         })
+
     }
 
 

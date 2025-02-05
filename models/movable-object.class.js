@@ -107,8 +107,7 @@ class MovableObject extends DrawableObject {
             console.log('U Winnnnnn!');
             world.character.y = 70; // winning Jump
             world.character.loadImage('img/2_character_pepe/3_jump/J-37.png');
-            document.getElementsByTagName('body')[0].innerHTML += 'img/9_intro_outro_screens/win/won_2.png';
-            //document.getElementById("win-screen").classList.remove("d-none");
+            document.getElementsByClassName('overlay-win')[0].style.display = 'unset';
         } else {
             console.log('UUU LLLOOOOOOSERRR!!');
             
@@ -117,9 +116,7 @@ class MovableObject extends DrawableObject {
     }
     
     stopDrawingIntervals() {
-        for (let i = 1; i < 9999; i++){
-            window.clearInterval(i);
-        } 
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
     
 }

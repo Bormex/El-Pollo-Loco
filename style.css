@@ -78,6 +78,7 @@ h1 {
     color: white;
     position: absolute;
     top: 32px;
+    left: 50%;
     border: none;
     background: none;
     text-shadow: 2px 2px #9A3E00;
@@ -86,15 +87,15 @@ h1 {
 
 @keyframes pulse {
     0% {
-        transform: scale(0.95);
+        transform: scale(0.95) translateX(-50%);
     }
 
     70% {
-        transform: scale(1);
+        transform: scale(1) translateX(-50%);
     }
 
     100% {
-        transform: scale(0.95);
+        transform: scale(0.95) translateX(-50%);
     }
 }
 
@@ -232,4 +233,54 @@ p {
     100% {
         rotate: -90deg;
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+*   Overlay Win Screen
+*
+*/
+.overlay-win {
+    position: absolute;
+    height: 480px;
+    width: 720px;
+    min-width: 720px;
+    min-height: 480px;
+    top: 0;
+    z-index: 9999;
+    display: none;
+    background-image: url('img/9_intro_outro_screens/win/won_2.png');
+    background-size: cover;
+    background-position-y: center;
+    background-color: rgb(0, 0, 0, 0.35);
+}
+
+.overlay-win button {
+    position: absolute;
+    bottom: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    width: 104px;
+    font-family: 'Zabars';
+    font-size: 32px;
+    background: none;
+    color: white;
+    text-shadow: -2px 2px #9A3E00;
+    animation: pulse 2s infinite;
+}
+
+.overlay-win button:hover {
+    text-shadow: -8px 8px #9A3E00;
+    scale: 1.05;
 }
