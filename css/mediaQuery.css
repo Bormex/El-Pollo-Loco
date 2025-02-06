@@ -1,0 +1,46 @@
+
+@media (max-width: 1023px) {
+    .touch-arrows, .touch-btn {
+        display: flex;
+    }
+    
+    .navigation {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    #canvas {
+        width: -webkit-fill-available;
+        height: -webkit-fill-available;
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    .overlay {
+        display: unset;
+        width: fit-content;
+        height: fit-content;
+        min-width: 100%;
+        min-height: 100%;
+        background-position-x: 0px;
+    }
+
+    .overlay-start {
+        background-position-x: 0;
+    }
+
+    .overlay-win {
+        width: fit-content;
+        min-width: -webkit-fill-available;
+        height: fit-content;
+        min-height: -webkit-fill-available;
+    }
+
+    .overlay-lose {
+        width: fit-content;
+        min-width: -webkit-fill-available;
+        height: fit-content;
+        min-height: -webkit-fill-available;
+    }
+}

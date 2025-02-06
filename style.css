@@ -184,13 +184,13 @@ p {
     position: absolute;
     bottom: 0;
     display: none;
-    justify-content: space-between;
     width: 100%;
     max-width: 100%;
     z-index: 1;
     padding: 0 24px;
     width: -webkit-fill-available;
     padding-bottom: 6px;
+    justify-content: center;
 }
 
 .navigation img {
@@ -204,9 +204,13 @@ p {
     gap: 16px;
 }
 
+.touch-arrows, .touch-btn {
+    display: none;
+}
+
 
 .rotateDeviceDiv {
-    display: flex; 
+    display: none; 
     flex-direction: column; 
     align-items: center; 
     margin: auto; 
@@ -215,8 +219,8 @@ p {
 
 
 #rotateDevice {
-    width: 320px;
-    height: 320px;
+    width: 264px;
+    height: 264px;
     margin: auto;
     animation: rotate 2s infinite;
 }
@@ -271,7 +275,7 @@ p {
     left: 50%;
     transform: translateX(-50%);
     border: none;
-    width: 104px;
+    width: 112px;
     font-family: 'Zabars';
     font-size: 32px;
     background: none;
@@ -284,3 +288,56 @@ p {
     text-shadow: -8px 8px #9A3E00;
     scale: 1.05;
 }
+
+
+
+
+
+
+
+
+
+
+.overlay-lose {
+    position: absolute;
+    height: 480px;
+    width: 720px;
+    min-width: 720px;
+    min-height: 480px;
+    top: 0;
+    z-index: 9999;
+    display: none;
+    background-image: url(img/9_intro_outro_screens/game_over/game_over.png);
+    background-size: contain;
+    background-position-y: center;
+    background-color: rgb(0, 0, 0, 0.35);
+}
+
+.overlay-lose button {
+    position: absolute;
+    bottom: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    width: 112px;
+    font-family: 'Zabars';
+    font-size: 32px;
+    background: none;
+    color: white;
+    text-shadow: -2px 2px #9A3E00;
+    animation: pulse 2s infinite;
+}
+
+.overlay-lose button:hover {
+    text-shadow: -8px 8px #9A3E00;
+    scale: 1.05;
+}
+
+
+
+
+
+
+
+
+

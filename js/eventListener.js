@@ -6,18 +6,18 @@
 */
 window.addEventListener('DOMContentLoaded', () => {
     //console.log(window.innerWidth);
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth < 667) {
         document.getElementsByTagName('h1')[0].style.display = 'none';
         document.getElementById('overlay').style.display = 'none';
-        if (document.getElementsByClassName('rotateDeviceDiv')[0] == undefined) {            
-            document.getElementsByTagName('body')[0].innerHTML += rotateDeviceTEMPLATE();
+        document.getElementsByClassName('touch-btns')[0].style.display = 'flex !important';
+        document.getElementsByClassName('touch-arrows')[0].style.display = 'flex !important';
+        if (document.getElementsByClassName('rotateDeviceDiv')[0].style.display == '' || document.getElementsByClassName('rotateDeviceDiv')[0].style.display == 'none') {            
+          document.getElementsByClassName('rotateDeviceDiv')[0].style.display = 'flex';
         }
-    }   else if (window.innerWidth == 667) {
-
     } else {
         document.getElementsByTagName('h1')[0].style.display = 'unset';
         document.getElementById('overlay').style.display = 'unset';
-        document.getElementsByClassName('rotateDeviceDiv')[0]?.remove();
+        document.getElementsByClassName('rotateDeviceDiv')[0].style.display = 'none';
     }   
 })
 
@@ -27,18 +27,19 @@ window.addEventListener('DOMContentLoaded', () => {
 */
 window.addEventListener('resize', () => {
     //console.log(window.innerWidth);
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth < 667) {
         document.getElementsByTagName('h1')[0].style.display = 'none';
         document.getElementById('overlay').style.display = 'none';
-        if (document.getElementsByClassName('rotateDeviceDiv')[0] == undefined) {            
-            document.getElementsByTagName('body')[0].innerHTML += rotateDeviceTEMPLATE();
+        document.getElementsByClassName('touch-btns')[0].style.display = 'flex !important';
+        document.getElementsByClassName('touch-arrows')[0].style.display = 'flex !important';
+        document.getElementsByClassName('navigation')[0].style.justifyContent = '';
+        if (document.getElementsByClassName('rotateDeviceDiv')[0].style.display == '' || document.getElementsByClassName('rotateDeviceDiv')[0].style.display == 'none') {            
+            document.getElementsByClassName('rotateDeviceDiv')[0].style.display = 'flex';
         }
-    } else if (window.innerWidth == 667) {
-        
     } else {
         document.getElementsByTagName('h1')[0].style.display = 'unset';
         document.getElementById('overlay').style.display = 'unset';
-        document.getElementsByClassName('rotateDeviceDiv')[0]?.remove();
+        document.getElementsByClassName('rotateDeviceDiv')[0].style.display = 'none';
     }   
 })
 
