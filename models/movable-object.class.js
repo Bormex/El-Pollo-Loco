@@ -94,16 +94,6 @@ class MovableObject extends DrawableObject {
         return this.bottles += 1;
     }
     
-
-
-
-
-
-
-
-
-
-
     overlayWinOrLose() {
         if (this.energy == 0) {
             this.winnig_sound.play();

@@ -99,20 +99,15 @@ class Character extends MovableObject {
                 // move right
                 this.moveRight();
                 this.otherDirection = false;
-                if(!this.isAboveGround() && !this.world.sound){
-                    this.walking_sound.play();
-                }
+                if(!this.isAboveGround() && !this.world.sound) this.walking_sound.play();
             }
-
             if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
                 // move left
                 this.moveLeft();
                 this.otherDirection = true;
-                if(!this.isAboveGround() && !this.world.sound){
-                    this.walking_sound.play();
-                }
+                if(!this.isAboveGround() && !this.world.sound) this.walking_sound.play();
             }
-            //                             position von pepe am boden (bzw. wenn er nicht am boden ist!!)
+            //position von pepe am boden (bzw. wenn er nicht am boden ist!!)
             if (this.world.keyboard.UP && !this.isAboveGround() && !this.isDead()) {
                 // Jumping
                 this.jump();
@@ -122,21 +117,16 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-
             if (this.isAboveGround()) {
-                // Jumpan animation
                 this.playAnimation(this.IMAGES_JUMPING)
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD)
             } else if (this.isHurt()) {
-                // Jumpan animation
                 this.playAnimation(this.IMAGES_HURT)
             } else if (this.isHurt()) {
-                // Jumpan animation
                 this.playAnimation(this.IMAGES_HURT)
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    // walk animation
                     this.playAnimation(this.IMAGES_WALKING)
                 };
             }
