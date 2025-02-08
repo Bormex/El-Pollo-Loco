@@ -7,15 +7,15 @@ class Character extends MovableObject {
     speed = 10;
     offset= {
         top: 95,
-        bottom: 10,
-        left: 20,
-        right: 20
+        bottom: 0,
+        left: 50,
+        right: 50
     };
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',
         'img/2_character_pepe/4_hurt/H-43.png',
-    ]
+    ];
     IMAGES_DEAD = [
         'img/2_character_pepe/5_dead/D-51.png',
         'img/2_character_pepe/5_dead/D-52.png',

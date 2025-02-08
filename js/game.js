@@ -8,6 +8,7 @@ function startGame() {
   init();
   document.getElementsByClassName('navigation')[0].style.display = 'flex';
   console.log('My Character is', world);
+  document.getElementById('canvas').scrollIntoView({ behavior: 'smooth', flex: 'end' });
 }
 
 // the fullscreen function + swape the enter - & exit fullscreen icon
@@ -26,6 +27,7 @@ function fullscreen() {
     exitFullscreenRequest();
     document.getElementById('fullscreen').style.display = 'block';
     document.getElementById('exitFullscreen').style.display = 'none';
+    document.getElementById('overlay').scrollIntoView({ behavior: 'smooth', flex: 'end' });
   }
 }
 

@@ -7,10 +7,10 @@ class SmallChicken extends MovableObject {
   chickenIsDead = false;
 
   offset= {
-    top: 55,
+    top: -10,
     left: 10,
     right: 10,
-    bottom: 55
+    bottom: 0
   };
 
   IMAGES_WALKING = [
@@ -44,5 +44,6 @@ class SmallChicken extends MovableObject {
   changeToDeadImage() {
     this.loadImage("img/3_enemies_chicken/chicken_small/2_dead/dead.png");
     this.chickenIsDead = true;
+    this.y = 370;
   }
 }

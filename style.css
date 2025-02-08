@@ -22,11 +22,9 @@ body {
     flex-direction: column;
     height: 100vh;
     width: 100%;
-    /**overflow: hidden;**/
+    overflow-y: auto;
     background-image: url(./assets/img/desert-5385998_1920.png);
-    /**background-size: cover;**/
     background-position: top;
-    overflow: scroll;
 }
 
 canvas {
@@ -66,7 +64,7 @@ h1 {
     height: 100%;
     background-size: cover;
     background-position-x: -75px;
-    background-image: url(/img/9_intro_outro_screens/start/startscreen_1.png);
+    background-image: url(./img/9_intro_outro_screens/start/startscreen_1.png);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }

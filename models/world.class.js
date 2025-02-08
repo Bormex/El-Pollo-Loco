@@ -18,7 +18,10 @@ class World {
     coin_collect = new Audio('audio/coin_collect.mp3');
     bottle_collect = new Audio('audio/bottle_collect.mp3');
     background_sound = new Audio('audio/game_sound.mp3');
-    bottle_drop = new Audio('audio/broken_bottle.mp3') 
+    bottle_drop = new Audio('audio/broken_bottle.mp3'); 
+    chicken_hit = new Audio('audio/chicken_dead.mp3');
+    boss_chicken_hit = new Audio('audio/boss_chicken_dead.mp3');
+    character_hit_sound = new Audio('audio/character_sound1.mp3');
     sound = false;
 
     
@@ -59,11 +62,7 @@ class World {
 
     
     backgroundMusic() {
-        if (!this.sound) {            
-            this.background_sound.play();
-        } else {
-            this.background_sound.pause();
-        }
+        !this.sound ? this.background_sound.play() : this.background_sound.pause();
     }
 
 
@@ -99,13 +98,10 @@ class World {
     checkCoinCollisions() {
         this.level.coin.forEach((coin, i) => {
             if(this.character.isColliding(coin) && this.character.coin < 5) {
-                //console.log(coin, i);
                 this.character.collectCoins();
                 this.coinbar.setPercentage((this.character.coin * 20));
                 Level1.coin.splice(i, 1);
-                if (!this.sound) {
-                    this.coin_collect.play();
-                }
+                if (!this.sound) this.coin_collect.play();
             }
         });
     }
@@ -118,13 +114,10 @@ class World {
     checkBottleCollisions() {
         this.level.bottle.forEach((bottle, i) => {
             if(this.character.isColliding(bottle) && this.character.bottles < 5) {
-                console.log(bottle, i);
                 this.character.collectBottles();
                 this.bottlebar.setPercentage((this.character.bottles * 20));
                 Level1.bottle.splice(i, 1);
-                if (!this.sound) {
-                    this.bottle_collect.play();
-                }
+                if (!this.sound) this.bottle_collect.play();
             }
         });
     }
@@ -138,8 +131,9 @@ class World {
               if (enemy instanceof Endboss) {
                 enemy.hit();
                 this.throwableobjects.splice(bottleIndex, 1);
-                //this.bottle_sound.play();
+                if (!this.sound) this.bottle_drop.play();
                 this.endbossstatusBar.setPercentage(enemy.energy);
+                if (!this.sound) this.boss_chicken_hit.play();
               } else {
                 this.checkBottleEnemyCollision(bottleIndex, enemy);
               }
@@ -154,6 +148,7 @@ class World {
 
     checkCharacterEnemyCollision(enemy) {
         if (enemy instanceof Endboss) {
+          if (!this.sound) this.character_hit_sound.play();
           this.character.hit();
           this.statusbar.setPercentage(this.character.energy);
         } else {
@@ -162,10 +157,12 @@ class World {
             this.character.isAboveGround() &&
             this.character.speedY < 0
           ) {
-            //this.small_chicken_dead.play();
+            if (!this.sound) this.chicken_hit.play();
+            if (!this.sound) this.character_hit_sound.play();
             enemy.changeToDeadImage();
             this.character.jump();
           } else {
+            if (!this.sound) this.character_hit_sound.play();
             this.character.hit();
             this.statusbar.setPercentage(this.character.energy);
           }
@@ -177,15 +174,15 @@ class World {
 
 
     checkBottleEnemyCollision(bottleIndex, enemy) {
-        this.bottle_drop.play();
+        if (!this.sound) this.bottle_drop.play();
         this.throwableobjects.splice(bottleIndex, 1);
         if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
           enemy.changeToDeadImage();
-          //this.small_chicken_dead.play();
+          if (!this.sound) this.chicken_hit.play();
         }
         if (enemy instanceof Endboss) {
           enemy.playAnimation(enemy.IMAGES_HURT);
-          //this.chicken_dead_sound.play();
+          if (!this.sound) this.boss_chicken_hit.play();
         }
     }
 

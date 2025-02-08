@@ -63,7 +63,6 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_ATTACK);
         this.statusBar = new Endbossbar();
-
         this.animate();
         this.movement();
         this.endingGame();
@@ -76,6 +75,7 @@ class Endboss extends MovableObject {
       setInterval(() => {
         if (this.energy == 0 || world.character.energy == 0) {
           this.overlayWinOrLose();
+          world.background_sound.pause() = true;
         } 
       }, 200)
     }
@@ -116,14 +116,13 @@ class Endboss extends MovableObject {
     }
 
     hit() {
-        //this.playHurtSound();
         this.reduceEnergy(25);
         this.playAnimation(this.IMAGES_HURT);
     
         if (this.energy <= 0) {
-          this.handleDeath();
+          this.checkIfdead();
         } else {
-          this.handleInjury();
+          this.checkIfhit();
         }
       }
     
@@ -136,7 +135,7 @@ class Endboss extends MovableObject {
       }
     
 
-      handleDeath() {
+      checkIfdead() {
         this.endboss_dead = true;
         this.playAnimation(this.IMAGES_DEAD);
     
@@ -146,7 +145,7 @@ class Endboss extends MovableObject {
         //this.winScreen();
       }
     
-      handleInjury() {
+      checkIfhit() {
         this.lastHit = new Date().getTime();
         this.isHurt = true;
         this.statusBar.setPercentage(this.energy);
