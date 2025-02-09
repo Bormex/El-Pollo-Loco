@@ -1,3 +1,9 @@
+/**
+ * The 'Endbossbar' class represents the status bar for the Endboss and It extends the 'DrawableObject' class.
+ * Displays the health percentage of the Endboss using different images.
+ * 
+ * @extends DrawableObject
+ */
 class Endbossbar extends DrawableObject {
   x = 540;
   y = 5;
@@ -21,6 +27,10 @@ class Endbossbar extends DrawableObject {
     'img/7_statusbars/2_statusbar_endboss/green/green100.png',
   ];
 
+  /**
+   * Initializes the Endboss status bar.
+   * Loads the images for the status bar and sets the initial percentage.
+   */
   constructor() {
     super();
     this.loadImages(this.IMAGES);

@@ -1,3 +1,8 @@
+/**
+ * The 'Endboss' class represents the finals boss and It extends the 'MovableObject' class.
+ * 
+ * @extends MovableObject
+ */
 class Endboss extends MovableObject {
   height = 400;
   width = 300;
@@ -55,6 +60,10 @@ class Endboss extends MovableObject {
     'img/4_enemie_boss_chicken/5_dead/G26.png',
   ];
 
+  /**
+   * Initializes the final boss, loads all relevant images and status bars.
+   * Starts animations and movements of the final boss.
+   */
   constructor() {
     super().loadImage(this.IMAGES_ALERT[0]);
     this.loadImages(this.IMAGES_WALKING);
@@ -68,6 +77,9 @@ class Endboss extends MovableObject {
     this.endingGame();
   }
 
+  /**
+   * Periodically checks if the boss or the character is dead and ends the game if true.
+   */
   endingGame() {
     setInterval(() => {
       if (this.energy == 0 || world.character.energy == 0) {
@@ -77,6 +89,9 @@ class Endboss extends MovableObject {
     }, 200);
   }
 
+  /**
+   * Controls the animations for the final boss based on its state (dead, hurt, walking, attacking).
+   */
   animate() {
     setInterval(() => {
       if (this.isDead()) {
@@ -88,6 +103,10 @@ class Endboss extends MovableObject {
     }, 1000 / 10);
   }
 
+  /**
+   * Moves the final boss based on the position of the character.
+   * If the character gets too close, the boss switches to attack mode.
+   */
   movement() {
     this.endbossMovementInterval = setInterval(() => {
       if (!this.isDead()) {
@@ -106,6 +125,10 @@ class Endboss extends MovableObject {
     }, 1000 / 10);
   }
 
+  /**
+   * Damages the final boss and triggers the hurt animation.
+   * If the final boss runs out of energy, it is marked as dead.
+   */
   hit() {
     this.reduceEnergy(25);
     this.playAnimation(this.IMAGES_HURT);
@@ -117,6 +140,12 @@ class Endboss extends MovableObject {
     }
   }
 
+  /**
+   * Reduces the final boss's energy by a specified amount.
+   * Ensures the energy doesn't fall below zero.
+   * 
+   * @param {number} amount The amount by which to reduce the energy.
+   */
   reduceEnergy(amount) {
     this.energy -= amount;
     if (this.energy < 0) {
@@ -124,11 +153,17 @@ class Endboss extends MovableObject {
     }
   }
 
+  /**
+   * Marks the final boss as dead and plays the corresponding death animations.
+   */
   checkIfdead() {
     this.endboss_dead = true;
     this.playAnimation(this.IMAGES_DEAD);
   }
 
+  /**
+   * Marks the final boss as hurt and updates the status bar.
+   */
   checkIfhit() {
     this.lastHit = new Date().getTime();
     this.isHurt = true;

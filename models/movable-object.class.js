@@ -1,3 +1,9 @@
+/**
+ * Represents a movable object in the game. This class extends from 'DrawableObject' and 
+ * provides functionality for movement, gravity, collision detection, and other actions.
+ * 
+ * @extends DrawableObject
+ */
 class MovableObject extends DrawableObject {
   speed = 0.15;
   otherDirection = false;
@@ -17,6 +23,9 @@ class MovableObject extends DrawableObject {
     bottom: 0,
   };
 
+  /**
+   * Applies gravity to the object, causing it to fall when it's above the ground.
+   */
   applyGravity() {
     // Falling
     setInterval(() => {
@@ -26,7 +35,9 @@ class MovableObject extends DrawableObject {
       }
     }, 1000 / 30);
   }
-
+  /**
+   * Reduces the object's energy when it takes damage.
+   */
   hit() {
     this.energy -= 5;
     if (this.energy <= 0) {
@@ -36,6 +47,12 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Determines if the object is currently hurt based on the time since it was last hit.
+   * If the object is above the ground, it is not considered hurt.
+   * 
+   * @returns {boolean} - Whether the object is hurt.
+   */
   isHurt() {
     if (this.isAboveGround()) {
       return false; // Unverwundbar, wenn über dem Boden
@@ -45,6 +62,11 @@ class MovableObject extends DrawableObject {
     return timepassed < 1;
   }
 
+  /**
+   * Determines if the object is above the ground.
+   * 
+   * @returns {boolean} - Whether the object is above the ground.
+   */
   isAboveGround() {
     if (this instanceof ThrowableObject) {
       return true;
@@ -53,6 +75,12 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Checks for collision between this object and another 'MovableObject'.
+   * 
+   * @param {MovableObject} mo - The other movable object to check for collision.
+   * @returns {boolean} - Whether a collision is detected.
+   */
   isColliding(mo) {
     return (
       this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
@@ -62,6 +90,10 @@ class MovableObject extends DrawableObject {
     );
   }
 
+  /**
+   * Plays an animation by cycling through a list of image paths.
+   * @param {string[]} IMAGES - An array of image paths for the animation.
+   */
   playAnimation(IMAGES) {
     let i = this.currentImage % IMAGES.length;
     let path = IMAGES[i];
@@ -69,30 +101,55 @@ class MovableObject extends DrawableObject {
     this.currentImage++;
   }
 
+  /**
+   * Moves the object to the right.
+   */
   moveRight() {
     this.x += this.speed;
   }
 
+  /**
+   * Moves the object to the left.
+   */
   moveLeft() {
     this.x -= this.speed;
   }
 
+  /**
+   * Makes the object jump by setting its vertical speed.
+   */
   jump() {
     this.speedY = 30;
   }
 
+  /**
+   * Determines if the object is dead.
+   * @returns {boolean} - Whether the object is dead.
+   */
   isDead() {
     return this.energy == 0;
   }
 
+  /**
+   * Increases the coin count by 1.
+   * @returns {number} - The new coin count.
+   */
   collectCoins() {
     return (this.coin += 1);
   }
 
+  /**
+   * Increases the bottle count by 1.
+   * @returns {number} - The new bottle count.
+   */
   collectBottles() {
     return (this.bottles += 1);
   }
 
+  /**
+   * Displays the win or lose overlay and plays the corresponding sound.
+   * Stops all drawing intervals when the game ends.
+   */
   overlayWinOrLose() {
     if (this.energy == 0) {
       this.winnig_sound.play();
@@ -102,13 +159,15 @@ class MovableObject extends DrawableObject {
       document.getElementsByClassName('navigation')[0].style.display = 'none';
     } else {
       this.losing_sound.play();
-      document.getElementsByClassName('overlay-lose')[0].style.display =
-        'unset';
+      document.getElementsByClassName('overlay-lose')[0].style.display = 'unset';
       document.getElementsByClassName('navigation')[0].style.display = 'none';
     }
     this.stopDrawingIntervals();
   }
 
+  /**
+   * Stops all drawing intervals in the game to halt any ongoing animations.
+   */
   stopDrawingIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
   }

@@ -1,4 +1,18 @@
 let Level1;
+/**
+ * Initializes the first level of the game by creating instances of various objects 
+ * that will be part of the level such as enemies, clouds, backgrounds, bottles, and coins.
+ * 
+ * It creates:
+ * - A set of 'Chicken' and 'SmallChicken' instances, along with a 'Endboss' instance for enemies.
+ * - Multiple 'Cloud' instances for the background.
+ * - A series of 'Background' instances for layering different background elements.
+ * - A set of 'Bottle' instances at specific positions.
+ * - A collection of 'Coin' instances scattered throughout the level.
+ *
+ * @function
+ * @returns {void} This function does not return a value.
+ */
 function initLevel() {
     Level1 = new Level(
         [

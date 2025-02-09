@@ -1,3 +1,9 @@
+/**
+ * The 'SmallChicken' class represents a small chicken enemy in the game. It extends the 'MovableObject' class and manages 
+ * the chicken's movement, animations, and state (alive or dead).
+ * 
+ * @extends MovableObject
+ */
 class SmallChicken extends MovableObject {
   y = 360;
   height = 60;
@@ -16,7 +22,9 @@ class SmallChicken extends MovableObject {
     'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
     'img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
   ];
-
+  /**
+   * Creates an instance of the 'SmallChicken' class and initializes the chicken's image, movement, speed, and animations.
+   */
   constructor() {
     super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
     this.loadImages(this.IMAGES_WALKING);
@@ -25,6 +33,9 @@ class SmallChicken extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Starts the chicken's movement and animation. The chicken moves left and plays the walking animation.
+   */
   animate() {
     setInterval(() => {
       if (!this.chickenIsDead) {
@@ -39,6 +50,10 @@ class SmallChicken extends MovableObject {
     }, 200);
   }
 
+  /**
+   * Changes the chicken's state to dead and updates its image to reflect the dead state.
+   * The chicken's position is adjusted after it dies.
+   */
   changeToDeadImage() {
     this.loadImage('img/3_enemies_chicken/chicken_small/2_dead/dead.png');
     this.chickenIsDead = true;

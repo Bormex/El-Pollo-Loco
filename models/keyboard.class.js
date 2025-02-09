@@ -1,3 +1,6 @@
+/**
+ * Represents the state of the keyboard keys.
+ */
 class Keyboard {
   UP = false;
   DOWN = false;

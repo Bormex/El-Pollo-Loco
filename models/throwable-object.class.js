@@ -1,3 +1,10 @@
+/**
+ * Represents a throwable bottle that can be thrown and animated.
+ * Extends the 'MovableObject' class and includes functionality for handling rotation 
+ * animation and gravity during the throw.
+ * 
+ * @extends MovableObject
+ */
 class ThrowableObject extends MovableObject {
   IMAGES_BOTTLE_THROW = [
     'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -6,27 +13,28 @@ class ThrowableObject extends MovableObject {
     'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
   ];
 
+  /**
+   * Creates an instance of the throwable object.
+   * @param {number} x - The x-coordinate of the throwable object on the canvas.
+   * @param {number} y - The y-coordinate of the throwable object on the canvas.
+   */
   constructor(x, y) {
     super().loadImage(
       'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png'
     );
     this.x = x;
     this.y = y;
-
-    this.rotationImages = [
-      'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
-      'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
-      'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
-      'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
-    ];
-
-    this.loadImages(this.rotationImages);
-
+    this.loadImages(this.IMAGES_BOTTLE_THROW);
     this.currentFrame = 0;
     this.throw();
-    this.startAnimation();
+    this.rotatingAnimation();
   }
 
+  /**
+   * Checks if the throwable object is colliding with another object.
+   * @param {MovableObject} mo - The object to check for collision.
+   * @returns {boolean} - 'true' if there is a collision, 'false' otherwise.
+   */
   isColliding(mo) {
     return (
       this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
@@ -36,6 +44,9 @@ class ThrowableObject extends MovableObject {
     );
   }
 
+  /**
+   * Simulates the throwing motion by applying gravity and moving the object horizontally.
+   */
   throw() {
     this.speedY = 30;
     this.applyGravity();
@@ -44,15 +55,21 @@ class ThrowableObject extends MovableObject {
     }, 25);
   }
 
-  startAnimation() {
+  /**
+   * Starts the animation by updating the bottle's rotating at intervals.
+   */
+  rotatingAnimation() {
     setInterval(() => {
       this.updateImage();
     }, 100);
   }
 
+  /**
+   * Updates the image for the rotating bottle animation.
+   */
   updateImage() {
-    this.currentImage = this.rotationImages[this.currentFrame];
+    this.currentImage = this.IMAGES_BOTTLE_THROW[this.currentFrame];
     this.img = this.imageCache[this.currentImage];
-    this.currentFrame = (this.currentFrame + 1) % this.rotationImages.length;
+    this.currentFrame = (this.currentFrame + 1) % this.IMAGES_BOTTLE_THROW.length;
   }
 }

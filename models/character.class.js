@@ -1,3 +1,8 @@
+/**
+ * The 'Character' class represents the main character in the game. It extends from the 'MovableObject' class and manages
+ * 
+ * @extends MovableObject
+ */
 class Character extends MovableObject {
   height = 300;
   width = 150;
@@ -70,6 +75,11 @@ class Character extends MovableObject {
   world;
   walking_sound = new Audio('audio/walking_on_rocks.mp3');
 
+  /**
+   * Creates an instance of the 'Character' class and initializes animations, gravity, and movement.
+   * Loads images for walking, idle, jumping, hurt, and dead animations.
+   * Starts the animation and handles movement based on keyboard inputs.
+   */
   constructor() {
     super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
 
@@ -82,6 +92,10 @@ class Character extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Starts the animation and handles character movement based on keyboard input.
+   * This includes walking, jumping, idle, and death animations.
+   */
   animate() {
     setInterval(() => {
       if (

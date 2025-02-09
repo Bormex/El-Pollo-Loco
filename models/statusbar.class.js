@@ -1,3 +1,10 @@
+/**
+ * Represents a status bar for displaying health.
+ * Extends the 'DrawableObject' class and provides functionality for 
+ * displaying a health bar.
+ * 
+ * @extends DrawableObject
+ */
 class StatusBar extends DrawableObject {
   x = 0;
   y = 0;
@@ -14,6 +21,9 @@ class StatusBar extends DrawableObject {
     'img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png',
   ];
 
+  /**
+   * Creates an instance of the status bar, loads images and sets the initial percentage.
+   */
   constructor() {
     super();
     this.loadImages(this.IMAGES);
