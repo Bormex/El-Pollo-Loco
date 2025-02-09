@@ -251,8 +251,8 @@ class World {
   addToMap(mo) {
     if (mo.otherDirection) this.flipImage(mo); // spiegelt Pepe für links laufen
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
-    mo.drawOffsetFrame(this.ctx);
+    //mo.drawFrame(this.ctx);
+    //mo.drawOffsetFrame(this.ctx);
     if (mo.otherDirection) this.flipImageBack(mo); // spiegelt Pepe für rechts laufen
   }
 
