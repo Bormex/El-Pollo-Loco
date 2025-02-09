@@ -7,8 +7,8 @@ class MovableObject extends DrawableObject {
   lastHit = 0;
   bottles = 0;
   coin = 0;
-  winnig_sound = new Audio("audio/game_win_sound.mp3");
-  losing_sound = new Audio("audio/game_lose_sound.mp3");
+  winnig_sound = new Audio('audio/game_win_sound.mp3');
+  losing_sound = new Audio('audio/game_lose_sound.mp3');
 
   offset = {
     top: 0,
@@ -97,14 +97,14 @@ class MovableObject extends DrawableObject {
     if (this.energy == 0) {
       this.winnig_sound.play();
       world.character.y = 70; // winning Jump
-      world.character.loadImage("img/2_character_pepe/3_jump/J-37.png"); // winning jump image
-      document.getElementsByClassName("overlay-win")[0].style.display = "unset";
-      document.getElementsByClassName("navigation")[0].style.display = "none";
+      world.character.loadImage('img/2_character_pepe/3_jump/J-37.png'); // winning jump image
+      document.getElementsByClassName('overlay-win')[0].style.display = 'unset';
+      document.getElementsByClassName('navigation')[0].style.display = 'none';
     } else {
       this.losing_sound.play();
-      document.getElementsByClassName("overlay-lose")[0].style.display =
-        "unset";
-      document.getElementsByClassName("navigation")[0].style.display = "none";
+      document.getElementsByClassName('overlay-lose')[0].style.display =
+        'unset';
+      document.getElementsByClassName('navigation')[0].style.display = 'none';
     }
     this.stopDrawingIntervals();
   }

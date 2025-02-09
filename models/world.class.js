@@ -12,17 +12,17 @@ class World {
   ctx;
   camera_x = 0;
   throwableobjects = [];
-  coin_collect = new Audio("audio/coin_collect.mp3");
-  bottle_collect = new Audio("audio/bottle_collect.mp3");
-  background_sound = new Audio("audio/game_sound.mp3");
-  bottle_drop = new Audio("audio/broken_bottle.mp3");
-  chicken_hit = new Audio("audio/chicken_dead.mp3");
-  boss_chicken_hit = new Audio("audio/boss_chicken_dead.mp3");
-  character_hit_sound = new Audio("audio/character_sound1.mp3");
+  coin_collect = new Audio('audio/coin_collect.mp3');
+  bottle_collect = new Audio('audio/bottle_collect.mp3');
+  background_sound = new Audio('audio/game_sound.mp3');
+  bottle_drop = new Audio('audio/broken_bottle.mp3');
+  chicken_hit = new Audio('audio/chicken_dead.mp3');
+  boss_chicken_hit = new Audio('audio/boss_chicken_dead.mp3');
+  character_hit_sound = new Audio('audio/character_sound1.mp3');
   sound = false;
 
   constructor(canvas, keyboard) {
-    this.ctx = canvas.getContext("2d");
+    this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.draw();

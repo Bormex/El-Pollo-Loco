@@ -8,7 +8,7 @@ class Coin extends DrawableObject {
     right: 35,
     bottom: 55,
   };
-  IMAGES = ["img/8_coin/coin_1.png", "img/8_coin/coin_2.png"];
+  IMAGES = ['img/8_coin/coin_1.png', 'img/8_coin/coin_2.png'];
 
   constructor() {
     super().loadImage(this.IMAGES[this.randomeImage()]);

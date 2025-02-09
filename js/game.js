@@ -4,14 +4,14 @@ let keyboard = new Keyboard();
 
 //
 function startGame() {
-  document.getElementsByClassName("overlay-start")[0].style.display = "none";
+  document.getElementsByClassName('overlay-start')[0].style.display = 'none';
   initLevel();
   init();
-  document.getElementsByClassName("navigation")[0].style.display = "flex";
-  console.log("My Character is", world);
+  document.getElementsByClassName('navigation')[0].style.display = 'flex';
+  console.log('My Character is', world);
   document
-    .getElementById("canvas")
-    .scrollIntoView({ behavior: "smooth", flex: "end" });
+    .getElementById('canvas')
+    .scrollIntoView({ behavior: 'smooth', flex: 'end' });
 }
 
 // the fullscreen function + swape the enter - & exit fullscreen icon
@@ -24,15 +24,15 @@ function fullscreen() {
   ) {
     enterFullscreenRequest();
     fullscreenCanvas();
-    document.getElementById("exitFullscreen").style.display = "block";
-    document.getElementById("fullscreen").style.display = "none";
+    document.getElementById('exitFullscreen').style.display = 'block';
+    document.getElementById('fullscreen').style.display = 'none';
   } else {
     exitFullscreenRequest();
-    document.getElementById("fullscreen").style.display = "block";
-    document.getElementById("exitFullscreen").style.display = "none";
+    document.getElementById('fullscreen').style.display = 'block';
+    document.getElementById('exitFullscreen').style.display = 'none';
     document
-      .getElementById("overlay")
-      .scrollIntoView({ behavior: "smooth", flex: "end" });
+      .getElementById('overlay')
+      .scrollIntoView({ behavior: 'smooth', flex: 'end' });
   }
 }
 
@@ -64,37 +64,37 @@ function exitFullscreenRequest() {
 
 // condition for canvas fullscreen
 function fullscreenCanvas() {
-  const canvas = document.getElementById("canvas");
-  canvas.style.width = "100%";
-  canvas.style.height = "100%";
+  const canvas = document.getElementById('canvas');
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
 }
 
 // mute and unmute the whole gamesound
 function gameSound() {
   if (world.sound == false) {
     world.sound = true;
-    document.getElementById("unMuteBtn").style.display = "block";
-    document.getElementById("muteBtn").style.display = "none";
+    document.getElementById('unMuteBtn').style.display = 'block';
+    document.getElementById('muteBtn').style.display = 'none';
   } else {
     world.sound = false;
-    document.getElementById("unMuteBtn").style.display = "none";
-    document.getElementById("muteBtn").style.display = "block";
+    document.getElementById('unMuteBtn').style.display = 'none';
+    document.getElementById('muteBtn').style.display = 'block';
   }
 }
 
 // restart after lose or win
 function restartGame() {
   if (
-    document.getElementsByClassName("overlay-win")[0].style.display == "unset"
+    document.getElementsByClassName('overlay-win')[0].style.display == 'unset'
   ) {
-    document.getElementsByClassName("overlay-win")[0].style.display = "none";
+    document.getElementsByClassName('overlay-win')[0].style.display = 'none';
   }
   if (
-    document.getElementsByClassName("overlay-lose")[0].style.display == "unset"
+    document.getElementsByClassName('overlay-lose')[0].style.display == 'unset'
   ) {
-    document.getElementsByClassName("overlay-lose")[0].style.display = "none";
+    document.getElementsByClassName('overlay-lose')[0].style.display = 'none';
   }
   initLevel();
   init();
-  document.getElementsByClassName("navigation")[0].style.display = "flex";
+  document.getElementsByClassName('navigation')[0].style.display = 'flex';
 }
