@@ -1,16 +1,14 @@
-
-
 class SmallChicken extends MovableObject {
   y = 360;
   height = 60;
   width = 60;
   chickenIsDead = false;
 
-  offset= {
+  offset = {
     top: -10,
     left: 10,
     right: 10,
-    bottom: 0
+    bottom: 0,
   };
 
   IMAGES_WALKING = [
