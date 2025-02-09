@@ -18,8 +18,8 @@ function startGame() {
   initLevel();
   init();
   document.getElementsByClassName('navigation')[0].style.display = 'flex';
-  console.log('My Character is', world);
   document.getElementById('canvas').scrollIntoView({ behavior: 'smooth', block: 'end' });
+  localStorageSavedSound();
 }
 
 /**
@@ -107,14 +107,16 @@ function fullscreenCanvas() {
  * @returns {void} This function does not return a value.
  */
 function gameSound() {
-  if (world.sound == false) {
-    world.sound = true;
-    document.getElementById('unMuteBtn').style.display = 'block';
-    document.getElementById('muteBtn').style.display = 'none';
-  } else {
+  if (localStorage.getItem('Gamesound') == 'true') {
     world.sound = false;
+    localStorage.setItem('Gamesound', world.sound);
     document.getElementById('unMuteBtn').style.display = 'none';
     document.getElementById('muteBtn').style.display = 'block';
+  } else {
+    world.sound = true;
+    localStorage.setItem('Gamesound', world.sound);
+    document.getElementById('unMuteBtn').style.display = 'block';
+    document.getElementById('muteBtn').style.display = 'none';
   }
 }
 
@@ -140,4 +142,22 @@ function restartGame() {
   initLevel();
   init();
   document.getElementsByClassName('navigation')[0].style.display = 'flex';
+}
+
+/**
+ * Restores the game sound out of the local storage.
+ * 
+ * @function
+ * @returns {void} This function does not return a value.
+ */
+function localStorageSavedSound() {
+  if (localStorage.getItem('Gamesound') == 'true') {
+    world.sound = true;
+    document.getElementById('unMuteBtn').style.display = 'block';
+    document.getElementById('muteBtn').style.display = 'none';
+  } else {
+    world.sound = false;
+    document.getElementById('unMuteBtn').style.display = 'none';
+    document.getElementById('muteBtn').style.display = 'block';
+  }
 }

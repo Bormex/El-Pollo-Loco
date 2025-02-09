@@ -137,13 +137,15 @@ window.addEventListener('keyup', (e) => {
  */
 window.addEventListener('touchstart', () => {
   document.querySelectorAll('.touch-btn').forEach((button) => {
-    button.addEventListener('touchstart', () => {
+    button.addEventListener('touchstart', (e) => {
       touchEventTrue(button);
       button.style.scale = '0.9';
+      e.preventDefault();
     });
-    button.addEventListener('touchend', () => {
+    button.addEventListener('touchend', (e) => {
       touchEventFalse(button);
       button.style.scale = 'unset';
+      e.preventDefault();
     });
   });
 });
