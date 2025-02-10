@@ -19,15 +19,10 @@
 
     .overlay {
         display: unset;
-        width: fit-content;
-        height: fit-content;
-        min-width: 100%;
-        min-height: 100%;
-        background-position-x: 0px;
-    }
-
-    .overlay-start {
-        background-position-x: 0;
+        width: 100vw;
+        height: 75vh;
+        min-width: unset;
+        min-height: unset;
     }
 
     .overlay-win {

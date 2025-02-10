@@ -6,7 +6,7 @@
     <title>El Pollo Loco</title>
     <link rel="shortcut icon" href="./img/3_enemies_chicken/chicken_normal/1_walk/2_w.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/mediaQuery.css">
+    <!-- <link rel="stylesheet" href="css/mediaQuery.css"> -->
 
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
@@ -62,22 +62,66 @@
         </div>
 
         <div class="more-about">
-            <p style="text-shadow: -2px 2px #9A3E00; letter-spacing: 8px; padding: 4px 0;">
-                More About
-            </p>
-            <section>
-                <span>
-                    <a href="movement.html">
-                        Movement
-                    </a>
+            <button id="movement" onclick="showMovement(true)">  
+                Movement
+            </button>
+            <button id="imprint" onclick="showImprint(true)">
+                Imprint
+            </button>
+        </div>
+
+        <div id="movementDiv">
+            <div class="movement">
+                <h2>M o v e m e n t</h2>
+                <div class="arrows">
+                    <p>
+                        Arrow Left (←) = run left
+                    </p>
+                    <p>
+                        Arrow Right (→) = run right
+                    </p>
+                    <p>
+                        Arrow Up (↑) = jump
+                    </p>
+                    <p>
+                        Key D = throw bottles
+                    </p>
+                </div>
+                <span onclick="showMovement(false)">
+                    Go Back To Start
                 </span>
-                <span>
-                    <a href="imprint.html">
-                        Imprint
-                    </a>
+            </div>
+        </div>
+
+        <div id="imprintDiv">
+            <div class="imprint">
+                <h2>I m p r i n t</h2>
+                <div style="color: white;">
+                    <p>
+                        Niclas Holzhey
+                    </p>
+                    <p>
+                        Dessauer Straße 205
+                    </p>
+                    <p>
+                        06886 Lutherstadt Wittenberg
+                    </p>
+                </div>
+                <div style="color: white;">
+                    <p>
+                        Kontakt
+                    </p>
+                    <p>
+                        Telefon: +49 068 2848718
+                    </p>
+                    <p>
+                        E-Mail: Kontakt@niclas-holzhey.de
+                    </p>
+                </div>
+                <span onclick="showImprint(false)">
+                    Go Back To Start
                 </span>
-            </section>
-            <img id="more-about-arrow" onclick="showAbout()" src="./assets/img/buttons/arrow-more-about.png">
+            </div>
         </div>
 
         <div class="overlay-win">

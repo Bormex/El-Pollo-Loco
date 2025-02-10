@@ -25,6 +25,7 @@ body {
     overflow-y: auto;
     background-image: url(./assets/img/desert-5385998_1920.png);
     background-position: top;
+    background-size: contain;
 }
 
 canvas {
@@ -33,8 +34,8 @@ canvas {
     position: absolute;
     top: 0;
     left: 0;
-    width: 720px;
-    height: 480px;
+    width: 100%;
+    height: 100%;
     z-index: 1;
     display: none;
 }
@@ -43,17 +44,16 @@ h1 {
     color: black;
     text-shadow: -4px 4px #9A3E00;
     letter-spacing: 6px;
-    font-size: 72px;
-    margin: 40px 0;
+    font-size: 5vw;
+    margin: 5vh 0px;
 }
 
 .overlay {
     position: relative !important;
-    height: 480px;
-    width: 720px;
-    max-width: 1920px;
-    min-width: 720px;
-    min-height: 480px;
+    width: 99vw;
+    height: 75vh;
+    min-width: unset;
+    min-height: unset;
 }
 
 .overlay-start {
@@ -63,24 +63,36 @@ h1 {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position-x: -75px;
+    background-position-x: center;
+    background-position-y: center;
     background-image: url(./img/9_intro_outro_screens/start/startscreen_1.png);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 #startBtn {
+    font-size: 4.25vw !important;
+    top: 6.5% !important;
+}
+
+button {
+    z-index: 1;
     cursor: pointer;
     font-family: Zabars;
-    font-size: 48px;
+    font-size: 3.75vw;
     color: white;
     position: absolute;
-    top: 32px;
+    top: 7.5%;
     left: 50%;
     border: none;
     background: none;
     text-shadow: 2px 2px #9A3E00;
     animation: pulse 2s infinite;
+}
+
+button:hover {
+    scale: 1.05;
+    text-shadow: 4px 4px #9A3E00;
 }
 
 @keyframes pulse {
@@ -97,11 +109,6 @@ h1 {
     }
 }
 
-#startBtn:hover {
-    scale: 1.05;
-    text-shadow: 4px 4px #9A3E00;
-}
-
 section {
     display: none;
     justify-content: space-around;
@@ -111,72 +118,23 @@ section {
 
 .more-about {
     display: flex;
-    padding: 12px 0;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-50%);
 }
 
-.more-about img {
-    width: 64px;
-    height: 24px;
-    cursor: pointer;
-    filter: drop-shadow(0px 4px 6px black);
+#movement {
+    left: 25%;
 }
 
-.more-about img:hover {
-    scale: 1.05;
+#imprint {
+    left: 75%;
 }
-
-span {
-    color: black;
-    cursor: pointer;
-    font-size: 52px;
-    text-shadow: -2px 2px #9A3E00;
-}
-
-span:hover {
-    text-shadow: -10px 10px #9A3E00;
-    scale: 1.05;
-}
-
-.imprint {
-    max-width: 1440px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-}
-
-.imprint div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.movement {
-    max-width: 1440px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-}
-
-.movement div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.arrows {
-    gap: 16px;
-    color: #9A3E00;
-    text-shadow: -1px 3px black;
-}
-
-p {
-    font-size: 30px;
-}
-
 
 .navigation {
     position: absolute;
@@ -192,8 +150,8 @@ p {
 }
 
 .navigation img {
-    width: 48px;
-    height: 48px;
+    width: 5vw;
+    height: 5vw;
     cursor: pointer;
 }
 
@@ -202,19 +160,18 @@ p {
     gap: 16px;
 }
 
-.touch-arrows, .touch-btn {
+.touch-arrows,
+.touch-btn {
     display: none;
 }
 
-
 .rotateDeviceDiv {
-    display: none; 
-    flex-direction: column; 
-    align-items: center; 
-    margin: auto; 
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
     gap: 48px;
 }
-
 
 #rotateDevice {
     width: 264px;
@@ -237,33 +194,21 @@ p {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /*
 *   Overlay Win Screen
 *
 */
 .overlay-win {
     position: absolute;
-    height: 480px;
-    width: 720px;
-    min-width: 720px;
-    min-height: 480px;
+    height: 100%;
+    width: 100%;
     top: 0;
     z-index: 9999;
     display: none;
-    background-image: url('img/9_intro_outro_screens/win/won_2.png');
+    background-image: url(img/9_intro_outro_screens/win/won_2.png);
     background-size: cover;
     background-position-y: center;
+    background-position-x: center;
     background-color: rgb(0, 0, 0, 0.35);
 }
 
@@ -274,6 +219,7 @@ p {
     transform: translateX(-50%);
     border: none;
     width: 112px;
+    height: 100%;
     font-family: 'Zabars';
     font-size: 32px;
     background: none;
@@ -287,39 +233,30 @@ p {
     scale: 1.05;
 }
 
-
-
-
-
-
-
-
-
-
 .overlay-lose {
     position: absolute;
-    height: 480px;
-    width: 720px;
-    min-width: 720px;
-    min-height: 480px;
+    height: 100%;
+    width: 100%;
     top: 0;
     z-index: 9999;
     display: none;
     background-image: url(img/9_intro_outro_screens/game_over/game_over.png);
-    background-size: contain;
+    background-size: cover;
     background-position-y: center;
+    background-position-x: center;
     background-color: rgb(0, 0, 0, 0.35);
 }
 
 .overlay-lose button {
+    font-family: 'Zabars';
+    font-size: 2vw;
     position: absolute;
-    bottom: 17%;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    border: none;
     width: 112px;
-    font-family: 'Zabars';
-    font-size: 32px;
+    height: 100%;
+    border: none;
     background: none;
     color: white;
     text-shadow: -2px 2px #9A3E00;
@@ -331,11 +268,86 @@ p {
     scale: 1.05;
 }
 
+#imprintDiv {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    background: white;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background-image: url(./assets/img/desert-5385998_1920.png);
+    background-size: contain;
+}
 
+#movementDiv {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    top: 0;
+    background: white;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background-image: url(./assets/img/desert-5385998_1920.png);
+    background-size: contain;
+}
 
+.imprint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 3vh;
+}
 
+.imprint div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.movement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 3vh;
+}
 
+.movement div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+span {
+    color: black;
+    cursor: pointer;
+    font-size: 2.75vw;
+    text-shadow: -2px 2px #9A3E00;
+    margin: 2vw 0;
+}
 
+span:hover {
+    text-shadow: -10px 10px #9A3E00;
+    scale: 1.05;
+}
 
+.arrows {
+    gap: 2vw;
+    color: white;
+}
+
+p {
+    font-size: 2vw;
+    text-shadow: -1px 1px black;
+}
+
+h2 {
+    font-size: 4vw;
+}

@@ -15,6 +15,7 @@ let keyboard = new Keyboard();
  */
 function startGame() {
   document.getElementsByClassName('overlay-start')[0].style.display = 'none';
+  document.getElementsByClassName('more-about')[0].style.display = 'none';
   initLevel();
   init();
   document.getElementsByClassName('navigation')[0].style.display = 'flex';
@@ -141,6 +142,7 @@ function restartGame() {
   }
   initLevel();
   init();
+  localStorageSavedSound();
   document.getElementsByClassName('navigation')[0].style.display = 'flex';
 }
 
