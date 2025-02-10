@@ -38,8 +38,6 @@ window.addEventListener('DOMContentLoaded', () => {
  * If the screen width is less than 667px:
  *   - The first '<h1>' element is hidden.
  *   - The element with the id 'overlay' is hidden.
- *   - The first elements with the classes 'touch-btns' and 'touch-arrows' are displayed with 'flex'.
- *   - The justifyContent style of the first element with the class 'navigation' is reset.
  *   - If the display style of the element with class 'rotateDeviceDiv' is either empty or 'none', 
  *     it will be set to 'flex'.
  * 
@@ -54,9 +52,6 @@ window.addEventListener('resize', () => {
   if (window.innerWidth < 667) {
     document.getElementsByTagName('h1')[0].style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
-    document.getElementsByClassName('touch-btns')[0].style.display = 'flex !important';
-    document.getElementsByClassName('touch-arrows')[0].style.display = 'flex !important';
-    document.getElementsByClassName('navigation')[0].style.justifyContent = '';
     if (
       document.getElementsByClassName('rotateDeviceDiv')[0].style.display == '' ||
       document.getElementsByClassName('rotateDeviceDiv')[0].style.display == 'none'

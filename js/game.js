@@ -20,7 +20,6 @@ function startGame() {
   init();
   document.getElementsByClassName('navigation')[0].style.display = 'flex';
   document.getElementById('canvas').scrollIntoView({ behavior: 'smooth', block: 'end' });
-  localStorageSavedSound();
 }
 
 /**
@@ -142,7 +141,6 @@ function restartGame() {
   }
   initLevel();
   init();
-  localStorageSavedSound();
   document.getElementsByClassName('navigation')[0].style.display = 'flex';
 }
 

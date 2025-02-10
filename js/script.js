@@ -2,6 +2,7 @@
  * The initializing step, which setting up the world and displays the 
  * canvas.
  * Sets the canvas display style to 'flex'.
+ * Restores the volume option out of the localstorage of the browser.
  * 
  * @function 
  * @returns {void} This function does not return a value.
@@ -10,6 +11,7 @@ function init() {
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
   canvas.style.display = 'flex';
+  localStorageSavedSound();
 }
 
 /**

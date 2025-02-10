@@ -25,7 +25,7 @@ body {
     overflow-y: auto;
     background-image: url(./assets/img/desert-5385998_1920.png);
     background-position: top;
-    background-size: contain;
+    background-size: cover;
 }
 
 canvas {
