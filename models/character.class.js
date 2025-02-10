@@ -8,6 +8,7 @@ class Character extends MovableObject {
   width = 150;
   y = 135;
   speed = 10;
+  shortIdle = false;
   offset = {
     top: 95,
     bottom: 0,
@@ -85,6 +86,7 @@ class Character extends MovableObject {
 
     this.loadImages(this.IMAGES_WALKING); // läd die Bilder in imageCache in Moveable-Objects OHNE WIRD KEIN BILD AUSGEBEN!
     this.loadImages(this.IMAGES_IDLE);
+    this.loadImages(this.IMAGES_LONG_IDLE);
     this.loadImages(this.IMAGES_JUMPING);
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_HURT);
@@ -101,11 +103,50 @@ class Character extends MovableObject {
       if (
         this.world.keyboard.RIGHT == false &&
         this.world.keyboard.LEFT == false &&
-        this.world.keyboard.UP == false
+        this.world.keyboard.UP == false &&
+        this.shortIdle == false
       ) {
         this.playAnimation(this.IMAGES_IDLE);
       }
-    }, 3500);
+    }, 1000);
+
+    setInterval(() => {
+      if (
+        this.world.keyboard.RIGHT == false &&
+        this.world.keyboard.LEFT == false &&
+        this.world.keyboard.UP == false &&
+        this.shortIdle == false
+      ) {
+        this.shortIdle = true;
+      }
+    }, 10000)
+
+    setInterval(() => {
+      if (
+        this.world.keyboard.RIGHT == true ||
+        this.world.keyboard.LEFT == true ||
+        this.world.keyboard.UP == true
+      ) {
+        this.shortIdle = false;
+      }
+    }, 200)
+
+    setInterval(() => {
+      if (
+        this.world.keyboard.RIGHT == false &&
+        this.world.keyboard.LEFT == false &&
+        this.world.keyboard.UP == false &&
+        this.shortIdle == true
+      ) {
+        this.playAnimation(this.IMAGES_LONG_IDLE);
+      }
+    }, 1500);
+
+
+
+
+
+
 
     setInterval(() => {
       if (
