@@ -9,6 +9,9 @@ class Character extends MovableObject {
   y = 135;
   speed = 10;
   shortIdle = false;
+  longIdle = false;
+  timeoutRunning = false;
+  tired = false;
   offset = {
     top: 95,
     bottom: 0,
@@ -75,6 +78,8 @@ class Character extends MovableObject {
   // Übergabe der ganzen variablen aus der World in character rein
   world;
   walking_sound = new Audio('audio/walking_on_rocks.mp3');
+  yawing_sound = new Audio('audio/yawing.mp3');
+  snoring_sound = new Audio('audio/snoring.mp3');
 
   /**
    * Creates an instance of the 'Character' class and initializes animations, gravity, and movement.
@@ -99,55 +104,23 @@ class Character extends MovableObject {
    * This includes walking, jumping, idle, and death animations.
    */
   animate() {
-    setInterval(() => {
-      if (
-        this.world.keyboard.RIGHT == false &&
-        this.world.keyboard.LEFT == false &&
-        this.world.keyboard.UP == false &&
-        this.shortIdle == false
-      ) {
-        this.playAnimation(this.IMAGES_IDLE);
-      }
-    }, 1000);
+
 
     setInterval(() => {
-      if (
-        this.world.keyboard.RIGHT == false &&
-        this.world.keyboard.LEFT == false &&
-        this.world.keyboard.UP == false &&
-        this.shortIdle == false
-      ) {
-        this.shortIdle = true;
-      }
-    }, 10000)
-
-    setInterval(() => {
-      if (
-        this.world.keyboard.RIGHT == true ||
-        this.world.keyboard.LEFT == true ||
-        this.world.keyboard.UP == true
-      ) {
-        this.shortIdle = false;
-      }
+      this.checkIfCharacterMoved();
     }, 200)
 
-    setInterval(() => {
-      if (
-        this.world.keyboard.RIGHT == false &&
-        this.world.keyboard.LEFT == false &&
-        this.world.keyboard.UP == false &&
-        this.shortIdle == true
-      ) {
-        this.playAnimation(this.IMAGES_LONG_IDLE);
-      }
-    }, 1500);
-
-
-
-
-
-
-
+    if (!this.timeoutRunning) {
+      this.timeoutRunning = true; 
+      setInterval(() => {
+        setInterval(() => {
+          this.characterIdle();
+        }, 1000)
+      }, 10000); 
+    }
+    
+    
+    
     setInterval(() => {
       if (
         this.world.keyboard.RIGHT &&
@@ -183,13 +156,55 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
-      } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURT);
       } else {
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
           this.playAnimation(this.IMAGES_WALKING);
         }
+        
       }
     }, 50);
+
   }
+
+  checkIfCharacterMoved() {
+    if (
+      this.world.character.isHurt() ||
+      this.world.keyboard.RIGHT ||
+      this.world.keyboard.LEFT ||
+      this.world.keyboard.UP
+    ) {
+      this.shortIdle = false;
+      this.longIdle = false;
+      this.tired = false;
+      this.timeoutRunning = true;
+      this.yawing_sound.pause();
+      this.snoring_sound.pause();
+    }
+  }
+
+  characterIdle() {
+    if (
+      !this.world.character.isHurt() &&
+      !this.world.keyboard.RIGHT &&
+      !this.world.keyboard.LEFT &&
+      !this.world.keyboard.UP &&
+      !this.longIdle
+    ) {
+      this.playAnimation(this.IMAGES_IDLE);
+    }
+  }
+
+
+
+  /**
+   * this.world.character.isHurt() ||
+      this.world.keyboard.RIGHT ||
+      this.world.keyboard.LEFT ||
+      this.world.keyboard.UP
+   * 
+   * Auf jedenfall rein!!
+   * 
+   * 
+   * 
+   */
 }
