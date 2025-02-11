@@ -115,7 +115,8 @@ class Character extends MovableObject {
       setInterval(() => {
         setInterval(() => {
           this.characterIdle();
-        }, 1000)
+        }, 1000);
+        this.timeoutRunning = false;
       }, 10000); 
     }
     
