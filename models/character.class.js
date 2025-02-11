@@ -8,10 +8,19 @@ class Character extends MovableObject {
   width = 150;
   y = 135;
   speed = 10;
-  shortIdle = false;
-  longIdle = false;
-  timeoutRunning = false;
-  tired = false;
+  
+  startShortIdle = false;
+  startLongIdle = false;
+
+
+  shortIdleInterval = null;
+  
+  shortIdleTimeout = null;
+
+  longIdleTimeout = null;
+
+  runJustOnetime = false;
+
   offset = {
     top: 95,
     bottom: 0,
@@ -106,21 +115,56 @@ class Character extends MovableObject {
   animate() {
 
 
-    setInterval(() => {
-      this.checkIfCharacterMoved();
-    }, 200)
+    let idleAnmiation = setInterval(() => {
+      //console.log('idleAnmiation:', idleAnmiation);
+      
+      if (
+        !this.world.character.isHurt() &&
+        !this.world.keyboard.RIGHT &&
+        !this.world.keyboard.LEFT &&
+        !this.world.keyboard.UP &&
+        !this.world.keyboard.KEYD &&
+        !this.runJustOnetime
+      ) {
+        
+        this.shortIdleTimeout = setTimeout(() => {
+          
+          console.log('shortIdleTimeout:', this.shortIdleTimeout);
 
-    if (!this.timeoutRunning) {
-      this.timeoutRunning = true; 
-      setInterval(() => {
-        setInterval(() => {
-          this.characterIdle();
-        }, 1000);
-        this.timeoutRunning = false;
-      }, 10000); 
-    }
+          if (!this.startShortIdle) { 
+              this.shortIdleInterval = setInterval(() => {
+                console.log("sIn:", this.shortIdleInterval);
+                this.playAnimation(this.IMAGES_IDLE);
+                this.yawing_sound.play();
+              }, 1000);
+              this.startShortIdle = true;
+          } 
+          this.runJustOnetime = true;
+        }, 10000);
+
+
+      // } else if (this.startLongIdle) {
+      //   this.longIdleTimeout = setTimeout(() => {
+      //     this.startShortIdle = true;
+      //     this.playAnimation(this.IMAGES_LONG_IDLE);
+      //     this.snoring_sound.play();
+      //     clearInterval(this.shortIdleIn);
+      //   }, 15000)
+      } else {
+        clearTimeout(this.shortIdleTimeout);
+        clearInterval(this.shortIdleInterval)
+        this.startShortIdle = false;
+        //this.startLongIdle = false;
+      }
+
+
+    }, 1000); 
     
     
+
+
+
+
     
     setInterval(() => {
       if (
@@ -167,33 +211,6 @@ class Character extends MovableObject {
 
   }
 
-  checkIfCharacterMoved() {
-    if (
-      this.world.character.isHurt() ||
-      this.world.keyboard.RIGHT ||
-      this.world.keyboard.LEFT ||
-      this.world.keyboard.UP
-    ) {
-      this.shortIdle = false;
-      this.longIdle = false;
-      this.tired = false;
-      this.timeoutRunning = true;
-      this.yawing_sound.pause();
-      this.snoring_sound.pause();
-    }
-  }
-
-  characterIdle() {
-    if (
-      !this.world.character.isHurt() &&
-      !this.world.keyboard.RIGHT &&
-      !this.world.keyboard.LEFT &&
-      !this.world.keyboard.UP &&
-      !this.longIdle
-    ) {
-      this.playAnimation(this.IMAGES_IDLE);
-    }
-  }
 
 
 
