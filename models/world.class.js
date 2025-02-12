@@ -57,8 +57,6 @@ class World {
       this.checkBottleCollisions();
       this.backgroundMusic();
       this.bottleTimerout();
-      console.log('Pepe Y:', this.character.y);
-      
     }, 200);
   }
 
@@ -168,7 +166,7 @@ class World {
    * 
    * @param {MovableObject} enemy - The enemy object the character collided with.
    */
-  checkCharacterEnemyCollision(enemy) {
+  checkCharacterEnemyCollision(enemy) { 
     if (enemy instanceof Endboss) {
       if (!this.sound) this.character_hit_sound.play();
       this.character.hit();
@@ -178,10 +176,11 @@ class World {
         this.character.isColliding(enemy) &&
         this.character.isAboveGround() &&
         this.character.speedY < 0
-      ) {
+      ) {     
         if (!this.sound) this.chicken_hit.play();
         enemy.changeToDeadImage();
         this.character.jump();
+        this.character.y = 135;
       } else {
         if (!this.sound) this.character_hit_sound.play();
         this.character.hit();
@@ -263,8 +262,8 @@ class World {
   addToMap(mo) {
     if (mo.otherDirection) this.flipImage(mo); // spiegelt Pepe für links laufen
     mo.draw(this.ctx);
-    //mo.drawFrame(this.ctx);
-    //mo.drawOffsetFrame(this.ctx);
+    mo.drawFrame(this.ctx);
+    mo.drawOffsetFrame(this.ctx);
     if (mo.otherDirection) this.flipImageBack(mo); // spiegelt Pepe für rechts laufen
   }
 

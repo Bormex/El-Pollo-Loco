@@ -1,5 +1,5 @@
 /**
- * The `Bottle` class represents a bottle object in the game.
+ * The 'Bottle' class represents a bottle object in the game.
  * 
  * @extends DrawableObject
  */
@@ -21,8 +21,8 @@ class Bottle extends DrawableObject {
   ];
 
   /**
-   * Creates an instance of the `Bottle` class.
-   * Randomly selects an image for the bottle and sets its `x` position with a random offset.
+   * Creates an instance of the 'Bottle' class.
+   * Randomly selects an image for the bottle and sets its 'x' position with a random offset.
    *
    * @param {number} x - The x-coordinate for the bottle's initial position.
    */
@@ -32,6 +32,11 @@ class Bottle extends DrawableObject {
     this.y = this.y;
   }
 
+  /**
+   * Returns a randome number '1' or '2' to print a randome Image of Salsa Bottles. 
+   * 
+   * @returns {number} - returns randome 1 or 2  
+   */
   randomeImage() {
     return Math.floor(Math.random() * this.IMAGES.length);
   }

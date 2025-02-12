@@ -14,10 +14,10 @@ class Character extends MovableObject {
   longIdle = null;
 
   offset = {
-    top: 95,
+    top: 90,
     bottom: 0,
-    left: 50,
-    right: 50,
+    left: 30,
+    right: 30,
   };
   IMAGES_HURT = [
     'img/2_character_pepe/4_hurt/H-41.png',
@@ -76,7 +76,6 @@ class Character extends MovableObject {
     'img/2_character_pepe/3_jump/J-38.png',
     'img/2_character_pepe/3_jump/J-39.png',
   ];
-  // Übergabe der ganzen variablen aus der World in character rein
   world;
   walking_sound = new Audio('audio/walking_on_rocks.mp3');
   yawing_sound = new Audio('audio/yawing.mp3');
@@ -89,7 +88,7 @@ class Character extends MovableObject {
    */
   constructor() {
     super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
-    this.loadImages(this.IMAGES_WALKING); // läd die Bilder in imageCache in Moveable-Objects OHNE WIRD KEIN BILD AUSGEBEN!
+    this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_IDLE);
     this.loadImages(this.IMAGES_LONG_IDLE);
     this.loadImages(this.IMAGES_JUMPING);
@@ -105,39 +104,16 @@ class Character extends MovableObject {
    */
   animate() {
     setInterval(() => {
-      if (
-        this.world.keyboard.RIGHT &&
-        this.x < this.world.level.level_end_x &&
-        !this.isDead()
-      ) {
-        // move right
-        this.moveRight();
-        this.otherDirection = false;
-        if (!this.isAboveGround() && !this.world.sound)
-          this.walking_sound.play();
-      }
-      if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
-        // move left
-        this.moveLeft();
-        this.otherDirection = true;
-        if (!this.isAboveGround() && !this.world.sound)
-          this.walking_sound.play();
-      }
-      //position von pepe am boden (bzw. wenn er nicht am boden ist!!)
-      if (this.world.keyboard.UP && !this.isAboveGround() && !this.isDead()) {
-        // Jumping
-        this.jump();
-      }
-
+      this.allowMoveLeft();
+      this.allowMoveRight();
+      this.allowJump();
       this.world.camera_x = -this.x + this.width;
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.isAboveGround()) {
-        this.playAnimation(this.IMAGES_JUMPING);
-      } else if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD);
-      } else if (this.isHurt()) {
+      if (this.isAboveGround()) this.playAnimation(this.IMAGES_JUMPING);
+      if (this.isDead()) this.playAnimation(this.IMAGES_DEAD);
+      if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else {
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) this.playAnimation(this.IMAGES_WALKING);
@@ -147,6 +123,34 @@ class Character extends MovableObject {
       if (userInput && !this.timeoutActive && this.longIdleActive) this.playLongIdle();
       if (!userInput) this.resetIdle(); 
     }, 50);
+  }
+
+  allowJump() {
+    if (this.world.keyboard.UP && !this.isAboveGround() && !this.isDead()) {
+      this.jump();
+    }
+  }
+
+  allowMoveLeft() {
+    if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
+      this.moveLeft();
+      this.otherDirection = true;
+      if (!this.isAboveGround() && !this.world.sound)
+        this.walking_sound.play();
+    }
+  }
+
+  allowMoveRight() {
+    if (
+      this.world.keyboard.RIGHT &&
+      this.x < this.world.level.level_end_x &&
+      !this.isDead()
+    ) {
+      this.moveRight();
+      this.otherDirection = false;
+      if (!this.isAboveGround() && !this.world.sound)
+        this.walking_sound.play();
+    }
   }
 
   checkUserInput() {

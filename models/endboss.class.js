@@ -132,7 +132,6 @@ class Endboss extends MovableObject {
   hit() {
     this.reduceEnergy(25);
     this.playAnimation(this.IMAGES_HURT);
-
     if (this.energy <= 0) {
       this.checkIfdead();
     } else {
