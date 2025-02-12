@@ -23,6 +23,7 @@ class World {
   boss_chicken_hit = new Audio('audio/boss_chicken_dead.mp3');
   character_hit_sound = new Audio('audio/character_sound1.mp3');
   sound = false;
+  lastThrow = 0;
 
   /**
    * Creates an instance of the game world.
@@ -55,6 +56,7 @@ class World {
       this.checkCoinCollisions();
       this.checkBottleCollisions();
       this.backgroundMusic();
+      this.bottleTimerout();
     }, 200);
   }
 
@@ -86,8 +88,10 @@ class World {
     if (
       this.keyboard.KEYD &&
       this.character.bottles > 0 &&
-      !this.movableobject.isDead()
+      !this.movableobject.isDead() &&
+      !this.bottleTimerout()
     ) {
+      this.lastThrow = new Date().getTime();
       let bottle = new ThrowableObject(
         this.character.x + 75,
         this.character.y + 75
@@ -96,6 +100,12 @@ class World {
       this.character.bottles--;
       this.bottlebar.setPercentage(this.bottlebar.percentage - 20);
     }
+  }
+
+  bottleTimerout() {
+    let timepassed = new Date().getTime() - this.lastThrow;
+    timepassed = timepassed / 1000;
+    return timepassed < 2.15;
   }
 
   /**
