@@ -57,6 +57,8 @@ class World {
       this.checkBottleCollisions();
       this.backgroundMusic();
       this.bottleTimerout();
+      console.log('Pepe Y:', this.character.y);
+      
     }, 200);
   }
 

@@ -102,6 +102,7 @@ function fullscreenCanvas() {
 /**
  * Toggles the whole game sound between muted and unmuted states.
  * If the sound is off, it will be turned on.
+ * Also muting the snoring and yawing interval sound of Pepe.
  *
  * @function
  * @returns {void} This function does not return a value.
@@ -114,6 +115,10 @@ function gameSound() {
     document.getElementById('muteBtn').style.display = 'block';
   } else {
     world.sound = true;
+    world.character.snoring_sound.currentTime = 0;
+    world.character.yawing_sound.currentTime = 0;
+    world.character.snoring_sound.pause();
+    world.character.yawing_sound.pause();
     localStorage.setItem('Gamesound', world.sound);
     document.getElementById('unMuteBtn').style.display = 'block';
     document.getElementById('muteBtn').style.display = 'none';

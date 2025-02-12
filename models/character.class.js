@@ -89,7 +89,6 @@ class Character extends MovableObject {
    */
   constructor() {
     super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
-
     this.loadImages(this.IMAGES_WALKING); // läd die Bilder in imageCache in Moveable-Objects OHNE WIRD KEIN BILD AUSGEBEN!
     this.loadImages(this.IMAGES_IDLE);
     this.loadImages(this.IMAGES_LONG_IDLE);
@@ -105,14 +104,6 @@ class Character extends MovableObject {
    * This includes walking, jumping, idle, and death animations.
    */
   animate() {
-
-    
-    
-
-    
-
-
-
     setInterval(() => {
       if (
         this.world.keyboard.RIGHT &&
@@ -149,20 +140,13 @@ class Character extends MovableObject {
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else {
-        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-          this.playAnimation(this.IMAGES_WALKING);
-        }
-        
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) this.playAnimation(this.IMAGES_WALKING);
       }
-
-
       let userInput = this.checkUserInput();
       if (userInput && !this.timeoutActive && !this.longIdleActive) this.playShortIdle();
       if (userInput && !this.timeoutActive && this.longIdleActive) this.playLongIdle();
       if (!userInput) this.resetIdle(); 
-
     }, 50);
-
   }
 
   checkUserInput() {
@@ -176,7 +160,7 @@ class Character extends MovableObject {
     this.timeoutActive = true;
       this.shortIdle = setTimeout(() => {
       this.playAnimation(this.IMAGES_IDLE);
-      this.yawing_sound.play();
+      if (!world.sound) this.yawing_sound.play();
       this.timeoutActive = false;
       this.longIdleActive = true;
     }, 10000)
@@ -186,7 +170,7 @@ class Character extends MovableObject {
     this.timeoutActive = true;
       this.longIdle = setTimeout(() => {
       this.playAnimation(this.IMAGES_LONG_IDLE);
-      this.snoring_sound.play();
+      if (!world.sound) this.snoring_sound.play();
       this.timeoutActive = false;
       this.longIdleActive = true;
     }, 10000)
@@ -202,5 +186,4 @@ class Character extends MovableObject {
     this.yawing_sound.pause();
     this.yawing_sound.currentTime = 0;
   }
-
 }
