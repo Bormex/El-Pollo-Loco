@@ -25,6 +25,7 @@ class World {
   sound = false;
   lastThrow = 0;
 
+
   /**
    * Creates an instance of the game world.
    * @param {HTMLCanvasElement} canvas - The canvas element where the game will be drawn.
@@ -56,8 +57,8 @@ class World {
       this.checkCoinCollisions();
       this.checkBottleCollisions();
       this.backgroundMusic();
-      this.bottleTimerout();
-    }, 200);
+      this.bottleTimerout();     
+    }, 100);
   }
 
   /**
@@ -89,7 +90,8 @@ class World {
       this.keyboard.KEYD &&
       this.character.bottles > 0 &&
       !this.movableobject.isDead() &&
-      !this.bottleTimerout()
+      !this.bottleTimerout() && 
+      !world.character.otherDirection
     ) {
       this.lastThrow = new Date().getTime();
       let bottle = new ThrowableObject(
@@ -105,7 +107,7 @@ class World {
   bottleTimerout() {
     let timepassed = new Date().getTime() - this.lastThrow;
     timepassed = timepassed / 1000;
-    return timepassed < 2.15;
+    return timepassed < 1.75;
   }
 
   /**
@@ -134,6 +136,7 @@ class World {
         this.bottlebar.setPercentage(this.character.bottles * 20);
         Level1.bottle.splice(i, 1);
         if (!this.sound) this.bottle_collect.play();
+        if (bottle.y == 350) console.log(`lol`);
       }
     });
   }

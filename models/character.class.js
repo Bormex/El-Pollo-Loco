@@ -10,8 +10,11 @@ class Character extends MovableObject {
   speed = 10;
   timeoutActive = false;
   longIdleActive = false;
+  idleActive = false;
   shortIdle = null;
   longIdle = null;
+  shortInter = null;
+  longerInter = null;
 
   offset = {
     top: 90,
@@ -116,21 +119,28 @@ class Character extends MovableObject {
       if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else {
-        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) this.playAnimation(this.IMAGES_WALKING);
+        if ((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround()) this.playAnimation(this.IMAGES_WALKING)
       }
       let userInput = this.checkUserInput();
       if (userInput && !this.timeoutActive && !this.longIdleActive) this.playShortIdle();
-      if (userInput && !this.timeoutActive && this.longIdleActive) this.playLongIdle();
       if (!userInput) this.resetIdle(); 
+      if (!this.isAboveGround() && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.idleActive) this.loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
     }, 50);
   }
 
+  /**
+  * Allows the character to jump if the UP key is pressed and the character is on the ground and not dead.
+  */
   allowJump() {
     if (this.world.keyboard.UP && !this.isAboveGround() && !this.isDead()) {
       this.jump();
     }
   }
-
+  
+  /**
+  * Moves the character left if the LEFT key is pressed and the character is not at the left boundary.
+  * Plays walking sound if the character is on the ground and sound is enabled.
+  */
   allowMoveLeft() {
     if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
       this.moveLeft();
@@ -140,6 +150,10 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+  * Moves the character right if the RIGHT key is pressed and the character is not at the right boundary.
+  * Plays walking sound if the character is on the ground and sound is enabled.
+  */
   allowMoveRight() {
     if (
       this.world.keyboard.RIGHT &&
@@ -153,6 +167,10 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+  * Checks if the user is not pressing any movement keys and the character is not hurt.
+  * @returns {boolean} True if no movement keys are pressed and the character is not hurt, otherwise false.
+  */
   checkUserInput() {
     return !this.world.character.isHurt() &&
     !this.world.keyboard.RIGHT &&
@@ -160,29 +178,50 @@ class Character extends MovableObject {
     !this.world.keyboard.UP
   }
 
+  /**
+  * Initiates a short idle animation after 10 seconds of inactivity.
+  * Plays yawning sound if sound is enabled and triggers long idle animation.
+  */
   playShortIdle() {
     this.timeoutActive = true;
-      this.shortIdle = setTimeout(() => {
-      this.playAnimation(this.IMAGES_IDLE);
+    this.shortIdle = setTimeout(() => {
+      this.idleActive = true;
+      this.shortInter = setInterval(() => {
+        this.playAnimation(this.IMAGES_IDLE);
+      }, 1000)
       if (!world.sound) this.yawing_sound.play();
       this.timeoutActive = false;
       this.longIdleActive = true;
+      this.playLongIdle();
     }, 10000)
   }
 
+  /**
+  * Initiates a long idle animation after 20 seconds of inactivity.
+  * Plays snoring sound if sound is enabled.
+  */
   playLongIdle() {
     this.timeoutActive = true;
-      this.longIdle = setTimeout(() => {
-      this.playAnimation(this.IMAGES_LONG_IDLE);
-      if (!world.sound) this.snoring_sound.play();
+    this.longIdle = setTimeout(() => {
+    clearInterval(this.shortInter);
+      this.longInter = setInterval(() => {
+        this.playAnimation(this.IMAGES_LONG_IDLE);
+        if (!world.sound) this.snoring_sound.play();
+      }, 1000)
       this.timeoutActive = false;
       this.longIdleActive = true;
-    }, 10000)
+    }, 20000)
   }
 
+  /**
+  * Resets all idle animations and sounds, stopping any active timeouts or intervals.
+  */
   resetIdle() {
     this.timeoutActive = false;
     this.longIdleActive = false;
+    this.idleActive = false;
+    clearInterval(this.shortInter);
+    clearInterval(this.longInter);
     clearTimeout(this.longIdle);
     clearTimeout(this.shortIdle);
     this.snoring_sound.pause();

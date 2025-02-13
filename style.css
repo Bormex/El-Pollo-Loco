@@ -65,6 +65,7 @@ h1 {
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
+    background-attachment: fixed;
     background-image: url(./img/9_intro_outro_screens/start/startscreen_1.png);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -212,26 +213,23 @@ section {
     background-color: rgb(0, 0, 0, 0.35);
 }
 
-.overlay-win button {
-    position: absolute;
-    bottom: 17%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: none;
-    width: 112px;
-    height: 100%;
+.overlay-win-div {
     font-family: 'Zabars';
-    font-size: 32px;
+    font-size: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 5%;
+    border: none;
     background: none;
     color: white;
     text-shadow: -2px 2px #9A3E00;
-    animation: pulse 2s infinite;
 }
 
-.overlay-win button:hover {
-    text-shadow: -8px 8px #9A3E00;
-    scale: 1.05;
-}
+
 
 .overlay-lose {
     position: absolute;
@@ -247,25 +245,48 @@ section {
     background-color: rgb(0, 0, 0, 0.35);
 }
 
-.overlay-lose button {
+.overlay-lose-div {
     font-family: 'Zabars';
     font-size: 2vw;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 112px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     height: 100%;
+    gap: 5%;
     border: none;
     background: none;
     color: white;
     text-shadow: -2px 2px #9A3E00;
-    animation: pulse 2s infinite;
 }
 
-.overlay-lose button:hover {
+.overlay-lose, .overlay-win a {
+    font-size: 2.75vw;
+}
+
+.overlay-lose button, .overlay-win button {
+    position: unset !important;
+    animation: pulseOverlay 2s infinite;
+}
+
+.overlay-lose .overlay-win button:hover, .overlay-lose a:hover, .overlay-win a:hover  {
     text-shadow: -8px 8px #9A3E00;
     scale: 1.05;
+}
+
+@keyframes pulseOverlay {
+    0% {
+        transform: scale(0.95) translateX(0);
+    }
+
+    70% {
+        transform: scale(1) translateX(0);
+    }
+
+    100% {
+        transform: scale(0.95) translateX(0);
+    }
 }
 
 #imprintDiv {
