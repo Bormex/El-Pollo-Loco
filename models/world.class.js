@@ -86,22 +86,35 @@ class World {
    * Handles throwing of bottles when the player presses the 'D' key.
    */
   checkThrowObjects() {
-    if (
-      this.keyboard.KEYD &&
+    if (this.checkIfstateThrowBottle()) this.throwBottle();
+  }
+
+  /**
+   * Throws a bottle and updates the character's bottle count and bottle bar.
+   */
+  throwBottle() {
+    this.lastThrow = new Date().getTime();
+    let bottle = new ThrowableObject(
+      this.character.x + 75,
+      this.character.y + 75
+    );
+    this.throwableobjects.push(bottle);
+    this.character.bottles--;
+    this.bottlebar.setPercentage(this.bottlebar.percentage - 20);
+  }
+
+  /**
+   * Checks if the conditions to throw a bottle are met.
+   * 
+   * @returns {boolean} True if the character can throw a bottle, false otherwise.
+   */
+  checkIfstateThrowBottle() {
+    return this.keyboard.KEYD &&
       this.character.bottles > 0 &&
       !this.movableobject.isDead() &&
       !this.bottleTimerout() && 
-      !world.character.otherDirection
-    ) {
-      this.lastThrow = new Date().getTime();
-      let bottle = new ThrowableObject(
-        this.character.x + 75,
-        this.character.y + 75
-      );
-      this.throwableobjects.push(bottle);
-      this.character.bottles--;
-      this.bottlebar.setPercentage(this.bottlebar.percentage - 20);
-    }
+      !world.character.otherDirection &&
+      world.endbossstatusBar.percentage > 0
   }
 
   /**
@@ -179,21 +192,40 @@ class World {
       this.character.hit();
       this.statusbar.setPercentage(this.character.energy);
     } else {
-      if (
-        this.character.isColliding(enemy) &&
-        this.character.isAboveGround() &&
-        this.character.speedY < 0
-      ) {     
-        if (!this.sound) this.chicken_hit.play();
-        enemy.changeToDeadImage();
-        this.character.jump();
-        this.character.y = 135;
-      } else {
-        if (!this.sound) this.character_hit_sound.play();
-        this.character.hit();
-        this.statusbar.setPercentage(this.character.energy);
-      }
+      this.checkCharacterChickenCollision(enemy);
     }
+  }
+
+  /**
+   * Checks for a collision between the character and a chicken and small chicken enemy.
+   * If the character collides while falling, the chicken is defeated.
+   * Otherwise, the character takes damage.
+   * @param {Object} enemy - The enemy object (chicken) to check collision with.
+   */
+  checkCharacterChickenCollision(enemy) {
+    if (
+      this.checkCharacterChickenCollisionIfstate(enemy)
+    ) {     
+      if (!this.sound) this.chicken_hit.play();
+      enemy.changeToDeadImage();
+      this.character.jump();
+      this.character.y = 135;
+    } else {
+      if (!this.sound) this.character_hit_sound.play();
+      this.character.hit();
+      this.statusbar.setPercentage(this.character.energy);
+    }
+  }
+
+  /**
+   * Determines whether the character is in a state to defeat a chicken enemy.
+   * @param {Object} enemy - The enemy object (chicken) to check collision with.
+   * @returns {boolean} True if the character collides with the enemy while falling, false otherwise.
+   */
+  checkCharacterChickenCollisionIfstate(enemy) {
+    return this.character.isColliding(enemy) &&
+      this.character.isAboveGround() &&
+      this.character.speedY < 0
   }
 
   /**

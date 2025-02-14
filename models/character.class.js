@@ -104,13 +104,34 @@ class Character extends MovableObject {
    * This includes walking, jumping, idle, and death animations.
    */
   animate() {
+    this.run();
+    this.runJumpAnimation();
+
+    setInterval(() => {
+      this.runActionAnimations();
+      let userInput = this.checkUserInput();
+      this.runIdleAndLongIdle(userInput);
+      this.runResetAnimationOnInput(userInput);
+      this.resetPepeOnGround();
+    }, 50);
+  }
+
+  /**
+   * Start all request Function to move left, right and to jump.
+   */
+  run() {
     setInterval(() => {
       this.allowMoveLeft();
       this.allowMoveRight();
       this.allowJump();
       this.world.camera_x = -this.x + this.width;
     }, 1000 / 60);
+  }
 
+  /**
+   * Function that will run the Jump animation just one time.
+   */
+  runJumpAnimation() {
     setInterval(() => {
       if (
         this.isAboveGround() &&
@@ -119,20 +140,38 @@ class Character extends MovableObject {
         this.playJumpAnimation();
       }
     }, 150);
+  }
 
-    setInterval(() => {
-      if (this.isDead()) this.playAnimation(this.IMAGES_DEAD);
-      if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURT);
-      } else {
-        this.playWalkingAnimation();
-      }
-      let userInput = this.checkUserInput();
-      if (userInput && !this.timeoutActive && !this.longIdleActive)
-        this.playShortIdle();
-      if (!userInput) this.resetIdle();
-      this.resetPepeOnGround();
-    }, 50);
+  /**
+   * Runs the action animations based on the character's state.
+   */
+  runActionAnimations() {
+    if (this.isDead()) this.playAnimation(this.IMAGES_DEAD);
+    if (this.isHurt() && world.endbossstatusBar.percentage > 0) {
+      this.playAnimation(this.IMAGES_HURT);
+    } else {
+      this.playWalkingAnimation();
+    }
+  }
+
+  /**
+   * Resets the idle animation if no user input is detected.
+   * @param {boolean} userInput - Indicates whether there is user input.
+   */
+  runResetAnimationOnInput(userInput) {
+    if (!userInput) this.resetIdle();
+  }
+
+  /**
+   * Plays the short idle animation if there is user input and no long idle or timeout is active.
+   * @param {boolean} userInput - Indicates whether there is user input.
+   */
+  runIdleAndLongIdle(userInput) {
+    if (userInput && 
+      !this.timeoutActive && 
+      !this.longIdleActive
+    )
+      this.playShortIdle();
   }
 
   /**
@@ -207,12 +246,12 @@ class Character extends MovableObject {
       this.idleActive = true;
       this.shortInter = setInterval(() => {
         this.playAnimation(this.IMAGES_IDLE);
-      }, 1000 / 2);
+      }, 1000 / 3);
       if (!world.sound) this.yawing_sound.play();
       this.timeoutActive = false;
       this.longIdleActive = true;
       this.playLongIdle();
-    }, 1000);
+    }, 500);
   }
 
   /**
@@ -226,10 +265,10 @@ class Character extends MovableObject {
       this.longInter = setInterval(() => {
         this.playAnimation(this.IMAGES_LONG_IDLE);
         if (!world.sound) this.snoring_sound.play();
-      }, 1000 / 2);
+      }, 1000 / 3);
       this.timeoutActive = false;
       this.longIdleActive = true;
-    }, 12500);
+    }, 7500);
   }
 
   /**
@@ -269,7 +308,8 @@ class Character extends MovableObject {
       !this.world.keyboard.RIGHT &&
       !this.world.keyboard.LEFT &&
       !this.idleActive &&
-      !this.isDead()
+      !this.isDead() &&
+      !this.isHurt()
     )
       this.loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
   }
@@ -283,7 +323,8 @@ class Character extends MovableObject {
       (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) &&
       !this.isAboveGround() &&
       world.endbossstatusBar.percentage > 0 &&
-      !this.isDead()
+      !this.isDead() &&
+      !this.isHurt()
     )
       this.playAnimation(this.IMAGES_WALKING);
   }
