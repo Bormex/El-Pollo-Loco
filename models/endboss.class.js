@@ -11,6 +11,7 @@ class Endboss extends MovableObject {
   x = 2900;
   endboss_dead = false;
   isHurt = false;
+  chickenIsDead = false;
 
   offset = {
     top: 55,
@@ -85,6 +86,7 @@ class Endboss extends MovableObject {
       if (this.energy == 0 || world.character.energy == 0) {
         this.overlayWinOrLose();
         world.background_sound.pause();
+        this.endboss_dead = true;        
       }
     }, 200);
   }
@@ -95,11 +97,12 @@ class Endboss extends MovableObject {
   animate() {
     setInterval(() => {
       if (this.isDead()) {
+        this.chickenIsDead = true;
         this.playAnimation(this.IMAGES_DEAD);
-        if (this.isHurt && !this.isDead()) {
-          this.playAnimation(this.IMAGES_HURT);
-        }
       }
+      if (this.isHurt && !this.isDead()) {
+        this.playAnimation(this.IMAGES_HURT);
+      }      
     }, 1000 / 10);
   }
 
@@ -111,16 +114,7 @@ class Endboss extends MovableObject {
     this.endbossMovementInterval = setInterval(() => {
       if (!this.isDead()) {
         const distance = this.x - world.character.x;
-        if (distance < 600 && distance > 450) {
-          this.moveLeft();
-          this.playAnimation(this.IMAGES_WALKING);
-        } else if (distance <= 450) {
-          this.moveLeft();
-          this.speed = 15;
-          this.playAnimation(this.IMAGES_ATTACK);
-        } else {
-          this.speed = 1.5;
-        }
+        this.bossAttackPattern(distance);
       }
     }, 1000 / 10);
   }
@@ -131,10 +125,7 @@ class Endboss extends MovableObject {
    */
   hit() {
     this.reduceEnergy(25);
-    this.playAnimation(this.IMAGES_HURT);
-    if (this.energy <= 0) {
-      this.checkIfdead();
-    } else {
+    if (!this.energy <= 0) {
       this.checkIfhit();
     }
   }
@@ -153,19 +144,62 @@ class Endboss extends MovableObject {
   }
 
   /**
-   * Marks the final boss as dead and plays the corresponding death animations.
-   */
-  checkIfdead() {
-    this.endboss_dead = true;
-    this.playAnimation(this.IMAGES_DEAD);
-  }
-
-  /**
    * Marks the final boss as hurt and updates the status bar.
    */
   checkIfhit() {
     this.lastHit = new Date().getTime();
     this.isHurt = true;
+      setTimeout(() => {
+        this.isHurt = false;
+      }, 200)
     this.statusBar.setPercentage(this.energy);
   }
+ 
+  /**
+   * Moves the boss forward by move left.
+   * Plays the walking animation and sets the movement speed to 15.
+   */
+  goForward() {
+    this.moveLeft();
+    this.playAnimation(this.IMAGES_WALKING);
+    this.speed = 15;
+  }
+
+  /**
+   * Moves the boss forward by move left
+   * and play the attack animation.
+   */
+  goAttack() {
+    this.moveLeft();
+    this.playAnimation(this.IMAGES_ATTACK);
+  }
+
+  /**
+   * Increases the boss's speed shortly when it gets hit.
+   */
+  speedUpIfhit() {
+    this.speed = 25;
+  }
+
+  /**
+   * Determines the attack pattern of the boss based on its distance from the character.
+   * - If the character is within a certain range, the boss moves forward.
+   * - If the character is even closer, the boss switches to attack mode.
+   * - If the boss is hurt, it speeds up.
+   * - Otherwise, it moves slowly.
+   *
+   * @param {number} distance - The distance between the boss and the character.
+   */
+  bossAttackPattern(distance) {
+    if (distance < 600 && distance > 450 && !this.isHurt) {
+      this.goForward();
+    } else if (distance <= 450 && !this.isHurt) {
+      this.goAttack();
+    } else if (this.isHurt) {
+      this.speedUpIfhit();
+    } else {
+      this.speed = 1.5;
+    }
+  }
 }
+

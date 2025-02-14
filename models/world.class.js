@@ -104,6 +104,11 @@ class World {
     }
   }
 
+  /**
+    * Checks if the time since the last throw is less than 1.75 seconds.
+    *
+    * @returns {boolean} - 'true' if less than 1.75 seconds have passed, otherwise 'false'.
+    */
   bottleTimerout() {
     let timepassed = new Date().getTime() - this.lastThrow;
     timepassed = timepassed / 1000;
@@ -136,7 +141,6 @@ class World {
         this.bottlebar.setPercentage(this.character.bottles * 20);
         Level1.bottle.splice(i, 1);
         if (!this.sound) this.bottle_collect.play();
-        if (bottle.y == 350) console.log(`lol`);
       }
     });
   }

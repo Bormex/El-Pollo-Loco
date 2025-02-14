@@ -153,8 +153,8 @@ class MovableObject extends DrawableObject {
   overlayWinOrLose() {
     if (this.energy == 0) {
       if (!world.sound) this.winnig_sound.play();
-      world.character.y = 70; // winning Jump
-      world.character.loadImage('img/2_character_pepe/3_jump/J-37.png'); // winning jump image
+      //world.character.y = 70; // winning Jump
+      //world.character.loadImage('img/2_character_pepe/3_jump/J-37.png'); // winning jump image
       document.getElementsByClassName('overlay-win')[0].style.display = 'unset';
       document.getElementsByClassName('navigation')[0].style.display = 'none';
     } else {
@@ -162,7 +162,9 @@ class MovableObject extends DrawableObject {
       document.getElementsByClassName('overlay-lose')[0].style.display = 'unset';
       document.getElementsByClassName('navigation')[0].style.display = 'none';
     }
-    this.stopDrawingIntervals();
+    setTimeout(() => {
+      this.stopDrawingIntervals();
+    }, 2000)
   }
 
   /**
