@@ -134,16 +134,10 @@ function gameSound() {
  * @returns {void} This function does not return a value.
  */
 function restartGame() {
-  if (
-    document.getElementsByClassName('overlay-win')[0].style.display == 'unset'
-  ) {
-    document.getElementsByClassName('overlay-win')[0].style.display = 'none';
-  }
-  if (
-    document.getElementsByClassName('overlay-lose')[0].style.display == 'unset'
-  ) {
-    document.getElementsByClassName('overlay-lose')[0].style.display = 'none';
-  }
+  const overlay_win = document.getElementsByClassName('overlay-win');
+  const overlay_lose = document.getElementsByClassName('overlay-lose');
+  if (overlay_win[0].style.display == 'unset') overlay_win[0].style.display = 'none';
+  if (overlay_lose[0].style.display == 'unset') overlay_lose[0].style.display = 'none';
   initLevel();
   init();
   document.getElementsByClassName('navigation')[0].style.display = 'flex';

@@ -164,7 +164,7 @@ class MovableObject extends DrawableObject {
     }
     setTimeout(() => {
       this.stopDrawingIntervals();
-    }, 2000)
+    }, 1000)
   }
 
   /**
