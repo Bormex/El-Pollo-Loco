@@ -17,4 +17,8 @@
     button {
         font-size: 72px !important;
     }
+
+    #startBtn {
+        font-size: 88px !important;
+    }
 }
