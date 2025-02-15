@@ -8,3 +8,13 @@
         justify-content: space-between;
     }
 }
+
+@media (min-width: 1920px) {
+    .overlay-start {
+        background-attachment: unset;
+    }
+
+    button {
+        font-size: 72px !important;
+    }
+}

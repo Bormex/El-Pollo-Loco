@@ -50,6 +50,7 @@ h1 {
 
 .overlay {
     position: relative !important;
+    max-width: 1920px;
     width: 99vw;
     height: 75vh;
     min-width: unset;
@@ -71,11 +72,6 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-#startBtn {
-    font-size: 4.25vw !important;
-    top: 6.5% !important;
-}
-
 button {
     z-index: 1;
     cursor: pointer;
@@ -89,6 +85,11 @@ button {
     background: none;
     text-shadow: 2px 2px #9A3E00;
     animation: pulse 2s infinite;
+}
+
+#startBtn {
+    font-size: 4.25vw;
+    top: 6.5% !important;
 }
 
 button:hover {
